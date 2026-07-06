@@ -1,7 +1,7 @@
 const toDoList = [];
 
-class ToDo {
-    constructor(title, description, dueDate, priority, notes, id) {
+class Todo {
+    constructor({title, description, dueDate, priority, notes, id}) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -14,3 +14,11 @@ class ToDo {
      this.done = !this.done;
      }
 }
+
+function createTodo(values) {
+  const todo = new Todo(values);
+  toDoList.push(todo);
+  console.log(toDoList);
+}
+
+export { createTodo };

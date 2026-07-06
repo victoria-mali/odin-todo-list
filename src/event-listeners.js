@@ -1,17 +1,23 @@
-import "./todos-object-manipulation.js";
-import { elements } from "./dom-manipulation.js";
+import { createTodo } from "./todos-object-manipulation.js";
+import { elements, toggleVisibility, getFormValues, renderTodo, clearForm } from "./dom-manipulation.js";
 
 elements.addBtn.addEventListener('click', (e) => {
-    elements.form.classList.toggle("visibility");
-    elements.addBtn.classList.toggle("visibility");
+    toggleVisibility(elements.form);
+    toggleVisibility(elements.addBtn);
 })
 
 elements.cancelBtn.addEventListener('click', (e) => {
-    elements.form.classList.toggle("visibility");
-    elements.addBtn.classList.toggle("visibility");
+    toggleVisibility(elements.form);
+    toggleVisibility(elements.addBtn);
 })
 
-elements.confirmBtn.addEventListener('click', (e) => {
-    event.preventDefault();
-    
-})
+function handleSubmit(e) {
+    e.preventDefault();
+    const values = getFormValues();
+    createTodo(values);
+    renderTodo(values);
+    toggleVisibility(elements.addBtn)
+    clearForm();
+}
+ 
+elements.form.addEventListener('submit', handleSubmit)
