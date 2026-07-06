@@ -3,9 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To-do list</title>
 </head>
 <body>
-    
+        <div class="container">
+            <h1>To-do list</h1>
+            <div class="to-do-list-div"></div>
+
+            <form class="todo-form visibility" method="get">
+                <h2>Add new task</h2>
+                
+                <label>
+                   Title
+                    <input type="text" name="title" id="form-title" required/>
+                </label>
+                
+                
+                <label>
+                   Description
+                    <input type="text" name="description" id="form-description"/>
+                </label>
+                
+                
+                <label>
+                  Due date
+                    <input type="date" name="date" id="form-date"/>
+                </label>
+                
+                 
+                <label>
+                   Priority
+                   <select name="priority" id="form-priority">
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </label>
+                
+                <label>
+                   Notes
+                    <input type="text" name="notes" id="form-notes"/>
+                </label>
+
+                <div class="form-btns">
+                <button id="cancel-btn" class="cancel-btn">Cancel</button>
+                <button id="confirm-btn" class="confirm-btn" type="submit">Save</button>
+                </div>
+            </form>
+
+            <button class="add-btn" id="add-btn">Add new item</button>
+         </div>
 </body>
 </html>
