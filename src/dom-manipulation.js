@@ -1,14 +1,11 @@
 const elements = {
+    container: document.querySelector(".container"),
     form: document.querySelector(".todo-form"),
     cancelBtn: document.querySelector(".cancel-btn"),
     confirmBtn: document.querySelector(".confirm-btn"),
     addBtn: document.querySelector(".add-btn"),
 }
 
-const todoDiv = {
-    div: document.querySelector(".todo-list-div"),
-    item: document.querySelector(".todo-item"),
-}
 
 function toggleVisibility(element) {
     element.classList.toggle("visibility");
@@ -26,9 +23,29 @@ function getFormValues() {
 }
 
 function renderTodo(values) {
-    let newTodo = todoDiv.item.cloneNode(true);
-    toggleVisibility(newTodo);
-    todoDiv.div.appendChild(newTodo);
+    const todoDiv = document.createElement("div");
+    todoDiv.classList.add("todo-item");
+    const checkbox = document.createElement("input");
+    checkbox.classList.add("checkbox");
+    checkbox.type = "checkbox";
+    checkbox.id = "checkbox";
+    checkbox.name = "checkbox";
+    const todoText = document.createElement("div");
+    todoText.classList.add("todo-text");
+    const todoTitle = document.createElement("h2");
+    todoTitle.classList.add("todo-title");
+    const todoDesc = document.createElement("p");
+    todoDesc.classList.add("todo-desc");
+
+    elements.container.appendChild(todoDiv);
+    todoDiv.appendChild(checkbox);
+    todoDiv.appendChild(todoText);
+    todoText.appendChild(todoTitle);
+    todoText.appendChild(todoDesc);
+
+    todoTitle.textContent = values.title;
+    todoDesc.textContent = values.description;
+
     toggleVisibility(elements.form);
 }
 
