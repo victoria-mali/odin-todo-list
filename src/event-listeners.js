@@ -37,7 +37,7 @@ function handleTodoChanges(e) {
     if (!todoItem) return;
     const id = todoItem.dataset.id;
 
-    if (e.target.matches('.to-do-delete-btn')) {
+    if (e.target.matches('.todo-delete-btn')) {
         deleteTodo(id);
         renderTodos(toDoList);
         showElement(elements.addBtn);
@@ -47,7 +47,7 @@ function handleTodoChanges(e) {
         checkTodo(id);
         renderTodos(toDoList);
     }
-    if (e.target.matches('.to-do-edit-btn')) {
+    if (e.target.matches('.todo-edit-btn')) {
         editingId = id;
         const values = retrieveTodo(id);
         prefillForm(values);

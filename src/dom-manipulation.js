@@ -44,6 +44,9 @@ function renderTodos(todos) {
         todoItem.classList.add("todo-item");
         todoItem.setAttribute('data-id', todo.id);
 
+        const todoLeftDiv = document.createElement("div");
+        todoLeftDiv.classList.add("todo-left");
+
         const checkbox = document.createElement("input");
         checkbox.classList.add("checkbox");
         checkbox.type = "checkbox";
@@ -63,19 +66,20 @@ function renderTodos(todos) {
         todoDesc.textContent = todo.description;
 
         const toDoButtons = document.createElement("div");
-        toDoButtons.classList.add("to-do-buttons");
+        toDoButtons.classList.add("todo-buttons");
         
         const toDoEditBtn = document.createElement("button");
-        toDoEditBtn .classList.add("to-do-edit-btn");
+        toDoEditBtn .classList.add("todo-edit-btn");
         toDoEditBtn .textContent = "Edit";
 
         const toDoDeleteBtn = document.createElement("button");
-        toDoDeleteBtn.classList.add("to-do-delete-btn");
+        toDoDeleteBtn.classList.add("todo-delete-btn");
         toDoDeleteBtn.textContent = "Delete";
 
         elements.todoDiv.appendChild(todoItem);
-        todoItem.appendChild(checkbox);
-        todoItem.appendChild(todoText);
+        todoItem.appendChild(todoLeftDiv);
+        todoLeftDiv.appendChild(checkbox);
+        todoLeftDiv.appendChild(todoText);
         todoText.appendChild(todoTitle);
         todoText.appendChild(todoDesc);
         todoItem.appendChild(toDoButtons);

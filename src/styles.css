@@ -23,7 +23,7 @@ h1 {
     margin-bottom: 40px;
 }
 
-.todo-list {
+.todo-list-div {
     width: 600px;
     text-align: left;
     margin: 0 auto;
@@ -41,6 +41,26 @@ h1 {
     justify-content: start;
     gap: 20px;
     align-items: center;
+}
+
+.todo-left {
+    display: flex;
+    gap: 12px;
+    align-items: start;
+}
+
+.todo-title {
+    font-size: 20px;
+}
+
+.todo-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.todo-item-done {
+    text-decoration: line-through;
+    opacity: 0.5;
 }
 
 .visibility {
