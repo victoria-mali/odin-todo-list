@@ -8,18 +8,22 @@ const elements = {
     todoDiv: document.querySelector(".todo-list-div"),
 }
 
+
+function showElement(element) {
+    element.classList.remove("visibility");
+}
+
+function hideElement(element) {
+    element.classList.add("visibility");
+}
+
+
 function showForm() {
+    clearForm();
     elements.formTitle.textContent = "Add new item";
     elements.container.appendChild(elements.form);
-    elements.form.classList.remove("visibility");
-    elements.addBtn.classList.add("visibility");
+    showElement(elements.form);
 }
-
-function hideForm() {
-    elements.form.classList.add("visibility");
-    elements.addBtn.classList.remove("visibility");
-}
-
 
 function getFormValues() {
     return {
@@ -106,4 +110,4 @@ function clearForm() {
 }
 
 
-export { elements, showForm, hideForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit };
+export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit };

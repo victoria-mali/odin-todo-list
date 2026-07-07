@@ -1,14 +1,17 @@
 import { toDoList, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo } from "./todos-object-manipulation.js";
-import { elements, showForm, hideForm, getFormValues, renderTodos, clearForm, prefillForm, changeFormToEdit } from "./dom-manipulation.js";
+import { elements, showElement, hideElement, showForm, getFormValues, renderTodos, clearForm, prefillForm, changeFormToEdit } from "./dom-manipulation.js";
 
 let editingId = null;
 
 elements.addBtn.addEventListener('click', (e) => {
+    editingId = null;
     showForm();
+    hideElement(elements.addBtn);
 })
 
 elements.cancelBtn.addEventListener('click', (e) => {
-    hideForm();
+    hideElement(elements.form);
+    showElement(elements.addBtn);
 })
 
 function handleSubmit(e) {
@@ -17,14 +20,14 @@ function handleSubmit(e) {
         const values = getFormValues();
         createTodo(values);
         renderTodos(toDoList);
-        elements.addBtn.classList.remove("visibility");
+        showElement(elements.addBtn);
         clearForm();
     } else {
         let newValues = getFormValues();
         replaceTodo(editingId, newValues);
         renderTodos(toDoList);
-        elements.addBtn.classList.add("visibility");
         clearForm();
+        showElement(elements.addBtn);
         editingId = null;
     }
 }
@@ -48,10 +51,8 @@ function handleTodoChanges(e) {
         const values = retrieveTodo(id);
         prefillForm(values);
         changeFormToEdit(todoItem, editingId);
-       // elements.addBtn.classList.add("visibility");
     }
 }
-
 
 
 function addPlaceholders() {
