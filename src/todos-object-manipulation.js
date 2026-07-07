@@ -1,13 +1,13 @@
 let toDoList = [];
 
 class Todo {
-    constructor({title, description, dueDate, priority, notes, id}) {
+    constructor({title, description, dueDate, priority, notes, done = false, id}) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
         this.notes = notes;
-        this.done = false;
+        this.done = done;
         this.id = id;
     }
      toggleDone() {
