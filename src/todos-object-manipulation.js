@@ -21,4 +21,16 @@ function createTodo(values) {
   console.log(toDoList);
 }
 
-export { toDoList, createTodo };
+function deleteTodo(id) {
+    const itemIndex = toDoList.findIndex(x => x.id === id);
+    toDoList.splice(itemIndex, 1);
+    console.log(toDoList);
+}
+
+function checkTodo(id) {
+  const itemIndex = toDoList.findIndex(x => x.id === id);
+  toDoList[itemIndex].toggleDone();
+console.log(toDoList);
+}
+
+export { toDoList, createTodo, deleteTodo, checkTodo };

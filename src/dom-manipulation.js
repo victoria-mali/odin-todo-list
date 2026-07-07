@@ -70,54 +70,17 @@ function renderTodos(todos) {
         toDoButtons.appendChild(toDoDeleteBtn);
     });
 
-/*     const todoDiv = document.createElement("div");
-    todoDiv.classList.add("todo-item");
 
-    const checkbox = document.createElement("input");
-    checkbox.classList.add("checkbox");
-    checkbox.type = "checkbox";
-    checkbox.id = "checkbox";
-    checkbox.name = "checkbox";
-
-    const todoText = document.createElement("div");
-    todoText.classList.add("todo-text");
-
-    const todoTitle = document.createElement("h2");
-    todoTitle.classList.add("todo-title");
-
-    const todoDesc = document.createElement("p");
-    todoDesc.classList.add("todo-desc");
-
-    const toDoButtons = document.createElement("div");
-    toDoButtons.classList.add("to-do-buttons", "opacity");
-    
-    const toDoEditBtn = document.createElement("button");
-    toDoEditBtn .classList.add("to-do-edit-btn");
-    toDoEditBtn .textContent = "Edit";
-
-    const toDoDeleteBtn = document.createElement("button");
-    toDoDeleteBtn.classList.add("to-do-delete-btn");
-    toDoDeleteBtn.textContent = "Delete";
-
-    elements.container.appendChild(todoDiv);
-    todoDiv.appendChild(checkbox);
-    todoDiv.appendChild(todoText);
-    todoText.appendChild(todoTitle);
-    todoText.appendChild(todoDesc);
-    todoDiv.appendChild(toDoButtons);
-    toDoButtons.appendChild(toDoEditBtn);
-    toDoButtons.appendChild(toDoDeleteBtn);
-
-    
-    todoTitle.textContent = values.title;
-    todoDesc.textContent = values.description; */
-
-    toggleVisibility(elements.form);
+    elements.form.classList.add("visibility");
 }
 
 
 function clearForm() {
     elements.form.title.value = "";
+    elements.form.description.value = "";
+    elements.form.date.value = "";
+    elements.form.priority.value = "";
+    elements.form.notes.value = "";
 }
 
 
