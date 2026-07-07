@@ -1,4 +1,4 @@
-const toDoList = [];
+let toDoList = [];
 
 class Todo {
     constructor({title, description, dueDate, priority, notes, id}) {
@@ -15,33 +15,58 @@ class Todo {
      }
 }
 
+function saveTodos() {
+  localStorage.setItem("toDoList", JSON.stringify(toDoList));
+}
+
 function createTodo(values) {
   const todo = new Todo(values);
   toDoList.push(todo);
+  saveTodos();
   console.log(toDoList);
 }
 
 function deleteTodo(id) {
     const itemIndex = toDoList.findIndex(x => x.id === id);
     toDoList.splice(itemIndex, 1);
+    saveTodos();
     console.log(toDoList);
 }
 
 function checkTodo(id) {
   const itemIndex = toDoList.findIndex(x => x.id === id);
+  console.log(typeof id, typeof toDoList[0].id)
   toDoList[itemIndex].toggleDone();
+  console.log(itemIndex)
+  saveTodos();
   console.log(toDoList);
 }
 
 function retrieveTodo(id) {
   const itemIndex = toDoList.findIndex(x => x.id === id);
+  saveTodos();
   return toDoList[itemIndex];
 }
 
 function replaceTodo(id, newValues) {
   const itemIndex = toDoList.findIndex(x => x.id === id);
   toDoList.splice(itemIndex, 1, newValues);
+  saveTodos();
   console.log(toDoList);
 }
 
-export { toDoList, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo };
+function loadTodos() {
+  const stored = localStorage.getItem("toDoList");
+  let parsed = stored ? JSON.parse(stored) : [];
+
+  let convertedObjects = parsed.map((object) => new Todo (object));
+  toDoList = convertedObjects;
+}
+
+function getTodos() {
+  return toDoList;
+}
+
+
+
+export { toDoList, loadTodos, getTodos, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo };

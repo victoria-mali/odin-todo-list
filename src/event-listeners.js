@@ -40,6 +40,7 @@ function handleTodoChanges(e) {
     if (e.target.matches('.to-do-delete-btn')) {
         deleteTodo(id);
         renderTodos(toDoList);
+        showElement(elements.addBtn);
     }
 
     if (e.target.matches('.checkbox')) {
@@ -55,7 +56,7 @@ function handleTodoChanges(e) {
 }
 
 
-function addPlaceholders() {
+/* function addPlaceholders() {
     createTodo({title: "Finish the to-do list project",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         dueDate: "2026-07-06",
@@ -80,6 +81,6 @@ function addPlaceholders() {
     renderTodos(toDoList);
 }
 
-document.addEventListener("DOMContentLoaded", addPlaceholders);
+document.addEventListener("DOMContentLoaded", addPlaceholders); */
 elements.form.addEventListener('submit', handleSubmit);
 elements.todoDiv.addEventListener('click', handleTodoChanges);
