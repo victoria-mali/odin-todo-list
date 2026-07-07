@@ -21,4 +21,4 @@ function createTodo(values) {
   console.log(toDoList);
 }
 
-export { createTodo };
+export { toDoList, createTodo };

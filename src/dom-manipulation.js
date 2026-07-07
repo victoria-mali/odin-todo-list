@@ -4,6 +4,7 @@ const elements = {
     cancelBtn: document.querySelector(".cancel-btn"),
     confirmBtn: document.querySelector(".confirm-btn"),
     addBtn: document.querySelector(".add-btn"),
+    todoDiv: document.querySelector(".todo-list-div"),
 }
 
 
@@ -22,29 +23,94 @@ function getFormValues() {
     }
 }
 
-function renderTodo(values) {
-    const todoDiv = document.createElement("div");
+function renderTodos(todos) {
+    elements.todoDiv.innerHTML = "";
+
+    todos.forEach(todo => {
+        const todoItem = document.createElement("div");
+        todoItem.classList.add("todo-item");
+        todoItem.setAttribute('data-id', todo.id);
+
+        const checkbox = document.createElement("input");
+        checkbox.classList.add("checkbox");
+        checkbox.type = "checkbox";
+        checkbox.classList.add("checkbox");
+        checkbox.name = "checkbox";
+        checkbox.checked = todo.done;
+
+        const todoText = document.createElement("div");
+        todoText.classList.add("todo-text");
+
+        const todoTitle = document.createElement("h2");
+        todoTitle.classList.add("todo-title");
+        todoTitle.textContent = todo.title;
+
+        const todoDesc = document.createElement("p");
+        todoDesc.classList.add("todo-desc");
+        todoDesc.textContent = todo.description;
+
+        const toDoButtons = document.createElement("div");
+        toDoButtons.classList.add("to-do-buttons");
+        
+        const toDoEditBtn = document.createElement("button");
+        toDoEditBtn .classList.add("to-do-edit-btn");
+        toDoEditBtn .textContent = "Edit";
+
+        const toDoDeleteBtn = document.createElement("button");
+        toDoDeleteBtn.classList.add("to-do-delete-btn");
+        toDoDeleteBtn.textContent = "Delete";
+
+        elements.todoDiv.appendChild(todoItem);
+        todoItem.appendChild(checkbox);
+        todoItem.appendChild(todoText);
+        todoText.appendChild(todoTitle);
+        todoText.appendChild(todoDesc);
+        todoItem.appendChild(toDoButtons);
+        toDoButtons.appendChild(toDoEditBtn);
+        toDoButtons.appendChild(toDoDeleteBtn);
+    });
+
+/*     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todo-item");
+
     const checkbox = document.createElement("input");
     checkbox.classList.add("checkbox");
     checkbox.type = "checkbox";
     checkbox.id = "checkbox";
     checkbox.name = "checkbox";
+
     const todoText = document.createElement("div");
     todoText.classList.add("todo-text");
+
     const todoTitle = document.createElement("h2");
     todoTitle.classList.add("todo-title");
+
     const todoDesc = document.createElement("p");
     todoDesc.classList.add("todo-desc");
+
+    const toDoButtons = document.createElement("div");
+    toDoButtons.classList.add("to-do-buttons", "opacity");
+    
+    const toDoEditBtn = document.createElement("button");
+    toDoEditBtn .classList.add("to-do-edit-btn");
+    toDoEditBtn .textContent = "Edit";
+
+    const toDoDeleteBtn = document.createElement("button");
+    toDoDeleteBtn.classList.add("to-do-delete-btn");
+    toDoDeleteBtn.textContent = "Delete";
 
     elements.container.appendChild(todoDiv);
     todoDiv.appendChild(checkbox);
     todoDiv.appendChild(todoText);
     todoText.appendChild(todoTitle);
     todoText.appendChild(todoDesc);
+    todoDiv.appendChild(toDoButtons);
+    toDoButtons.appendChild(toDoEditBtn);
+    toDoButtons.appendChild(toDoDeleteBtn);
 
+    
     todoTitle.textContent = values.title;
-    todoDesc.textContent = values.description;
+    todoDesc.textContent = values.description; */
 
     toggleVisibility(elements.form);
 }
@@ -55,4 +121,4 @@ function clearForm() {
 }
 
 
-export { elements, toggleVisibility, getFormValues, clearForm, renderTodo };
+export { elements, toggleVisibility, getFormValues, clearForm, renderTodos };
