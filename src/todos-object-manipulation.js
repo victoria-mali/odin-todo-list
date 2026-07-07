@@ -30,7 +30,18 @@ function deleteTodo(id) {
 function checkTodo(id) {
   const itemIndex = toDoList.findIndex(x => x.id === id);
   toDoList[itemIndex].toggleDone();
-console.log(toDoList);
+  console.log(toDoList);
 }
 
-export { toDoList, createTodo, deleteTodo, checkTodo };
+function retrieveTodo(id) {
+  const itemIndex = toDoList.findIndex(x => x.id === id);
+  return toDoList[itemIndex];
+}
+
+function replaceTodo(id, newValues) {
+  const itemIndex = toDoList.findIndex(x => x.id === id);
+  toDoList.splice(itemIndex, 1, newValues);
+  console.log(toDoList);
+}
+
+export { toDoList, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo };

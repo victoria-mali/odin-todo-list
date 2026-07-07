@@ -1,16 +1,25 @@
 const elements = {
     container: document.querySelector(".container"),
     form: document.querySelector(".todo-form"),
+    formTitle: document.querySelector(".todo-form-title"),
     cancelBtn: document.querySelector(".cancel-btn"),
     confirmBtn: document.querySelector(".confirm-btn"),
     addBtn: document.querySelector(".add-btn"),
     todoDiv: document.querySelector(".todo-list-div"),
 }
 
-
-function toggleVisibility(element) {
-    element.classList.toggle("visibility");
+function showForm() {
+    elements.formTitle.textContent = "Add new item";
+    elements.container.appendChild(elements.form);
+    elements.form.classList.remove("visibility");
+    elements.addBtn.classList.add("visibility");
 }
+
+function hideForm() {
+    elements.form.classList.add("visibility");
+    elements.addBtn.classList.remove("visibility");
+}
+
 
 function getFormValues() {
     return {
@@ -74,6 +83,19 @@ function renderTodos(todos) {
     elements.form.classList.add("visibility");
 }
 
+function prefillForm(values) {
+    elements.form.title.value = values.title;
+    elements.form.description.value = values.description;
+    elements.form.date.value = values.dueDate;
+    elements.form.priority.value = values.priority;
+    elements.form.notes.value = values.notes;
+}
+
+function changeFormToEdit(item, id) {
+    item.appendChild(elements.form);
+    elements.formTitle.textContent = "Edit";
+    elements.form.classList.remove("visibility");
+}
 
 function clearForm() {
     elements.form.title.value = "";
@@ -84,4 +106,4 @@ function clearForm() {
 }
 
 
-export { elements, toggleVisibility, getFormValues, clearForm, renderTodos };
+export { elements, showForm, hideForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit };
