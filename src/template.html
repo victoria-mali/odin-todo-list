@@ -8,6 +8,22 @@
 <body>
         <div class="container">
             <h1>To-do list</h1>
+
+            <div class="projects-container">
+                <h2>Projects</h2>
+
+                <div class="projects">
+                    <button id="all">All</button>
+                </div>
+
+                <form class="projects-form visibility" method="get">
+                    <input type="text" name="project" class="projects-form-name">
+                    <button class="projects-form-btn" type="submit">+</button>
+                </form>
+
+                <button class="new-project-btn">New project</button>
+            </div>
+
             <div class="todo-list-div"></div>
 
             <form class="todo-form visibility" method="get">
@@ -24,6 +40,11 @@
                     <input type="text" name="description" id="form-description"/>
                 </label>
                 
+                <label>
+                   Project
+                   <select name="project" id="form-project">
+                    </select>
+                </label>
                 
                 <label>
                   Due date

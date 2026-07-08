@@ -1,9 +1,11 @@
 let toDoList = [];
+let projects = ["Default"];
 
 class Todo {
-    constructor({title, description, dueDate, priority, notes, done = false, id}) {
+    constructor({title, description, project = "Default", dueDate, priority, notes, done = false, id}) {
         this.title = title;
         this.description = description;
+        this.project = project,
         this.dueDate = dueDate;
         this.priority = priority;
         this.notes = notes;
@@ -68,5 +70,10 @@ function getTodos() {
 }
 
 
+function createProject(name) {
+  projects.push(name);
+  console.log(projects);
+}
 
-export { toDoList, loadTodos, getTodos, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo };
+
+export { toDoList, projects, loadTodos, getTodos, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo , createProject};

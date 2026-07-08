@@ -1,5 +1,5 @@
-import { toDoList, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo } from "./todos-object-manipulation.js";
-import { elements, showElement, hideElement, showForm, getFormValues, renderTodos, clearForm, prefillForm, changeFormToEdit } from "./dom-manipulation.js";
+import { toDoList, projects, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo, createProject } from "./todos-object-manipulation.js";
+import { elements, showElement, hideElement, showForm, getFormValues, renderTodos, clearForm, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos } from "./dom-manipulation.js";
 
 let editingId = null;
 
@@ -47,6 +47,7 @@ function handleTodoChanges(e) {
         checkTodo(id);
         renderTodos(toDoList);
     }
+
     if (e.target.matches('.todo-edit-btn')) {
         editingId = id;
         const values = retrieveTodo(id);
@@ -55,32 +56,34 @@ function handleTodoChanges(e) {
     }
 }
 
+elements.addProjectBtn.addEventListener('click', (e) => {
+    addProjectForm();
+})
 
-/* function addPlaceholders() {
-    createTodo({title: "Finish the to-do list project",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        dueDate: "2026-07-06",
-        priority: "High",
-        notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        id: crypto.randomUUID(),
-        });
-    createTodo({title: "Go to the gym",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        dueDate: "2026-07-06",
-        priority: "High",
-        notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        id: crypto.randomUUID(),
-        });
-    createTodo({title: "Order groceries",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        dueDate: "2026-07-06",
-        priority: "Medium",
-        notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        id: crypto.randomUUID(),
-        });
-    renderTodos(toDoList);
+
+function handleProjectSumbit(e) {
+    e.preventDefault();
+    const projectName = getProjectName();
+    createProject(projectName);
+    renderProjects(projects);
 }
 
-document.addEventListener("DOMContentLoaded", addPlaceholders); */
+
+function handleProjectChanges(e) {
+    const project = e.target.closest('[data-id]');
+    if (!project) return;
+    const id = project.dataset.id;
+
+    if (e.target.matches(".project")) {
+        let filteredTodos = filterTodos(toDoList, id);
+        console.log(filteredTodos);
+        console.log(id);
+        renderTodos(filteredTodos);
+    }
+}
+
+
 elements.form.addEventListener('submit', handleSubmit);
 elements.todoDiv.addEventListener('click', handleTodoChanges);
+elements.projectsForm.addEventListener('submit', handleProjectSumbit);
+elements.projects.addEventListener('click', handleProjectChanges)

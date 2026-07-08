@@ -6,4 +6,3 @@ import "./event-listeners.js";
 
 loadTodos();
 renderTodos(getTodos());
-

@@ -1,5 +1,9 @@
 const elements = {
     container: document.querySelector(".container"),
+    projects: document.querySelector(".projects"),
+    addProjectBtn: document.querySelector(".new-project-btn"),
+    projectsForm: document.querySelector(".projects-form"),
+    projectsFormBtn: document.querySelector(".projects-form-btn"),
     form: document.querySelector(".todo-form"),
     formTitle: document.querySelector(".todo-form-title"),
     cancelBtn: document.querySelector(".cancel-btn"),
@@ -29,6 +33,7 @@ function getFormValues() {
     return {
         title: elements.form.title.value,
         description: elements.form.description.value,
+        project: elements.form.project.value,
         dueDate: elements.form.date.value,
         priority: elements.form.priority.value,
         notes: elements.form.notes.value,
@@ -94,6 +99,7 @@ function renderTodos(todos) {
 function prefillForm(values) {
     elements.form.title.value = values.title;
     elements.form.description.value = values.description;
+    elements.form.project.value = values.project;
     elements.form.date.value = values.dueDate;
     elements.form.priority.value = values.priority;
     elements.form.notes.value = values.notes;
@@ -114,4 +120,41 @@ function clearForm() {
 }
 
 
-export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit };
+function addProjectForm() {
+    showElement(elements.projectsForm);
+}
+
+function getProjectName() {
+    return elements.projectsForm.project.value;
+}
+
+
+function renderProjects(projects) {
+    elements.projects.innerHTML = "";
+
+    projects.forEach(project => {
+        let newProject = document.createElement("button");
+        elements.projects.appendChild(newProject)
+        newProject.setAttribute('data-id', project);
+        newProject.classList.add("project");
+        newProject.id = project;
+        newProject.textContent = project;
+
+        let projectOption = document.createElement("option");
+        projectOption.value = project;
+        projectOption.textContent = project;
+        elements.form.project.appendChild(projectOption);
+
+        elements.projectsForm.project.value = "";
+        hideElement(elements.projectsForm);
+    })
+}
+
+
+function filterTodos(todos, id) {
+    return todos.filter(todo => 
+        todo.project === id
+    )}
+
+
+export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos};
