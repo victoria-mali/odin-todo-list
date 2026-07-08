@@ -4,6 +4,7 @@ const elements = {
     addProjectBtn: document.querySelector(".new-project-btn"),
     projectsForm: document.querySelector(".projects-form"),
     projectsFormBtn: document.querySelector(".projects-form-btn"),
+    todosContainer: document.querySelector(".todos-container"),
     form: document.querySelector(".todo-form"),
     formTitle: document.querySelector(".todo-form-title"),
     cancelBtn: document.querySelector(".cancel-btn"),
@@ -25,7 +26,7 @@ function hideElement(element) {
 function showForm() {
     clearForm();
     elements.formTitle.textContent = "Add new item";
-    elements.container.appendChild(elements.form);
+    elements.todosContainer.appendChild(elements.form);
     showElement(elements.form);
 }
 
@@ -49,6 +50,9 @@ function renderTodos(todos) {
         todoItem.classList.add("todo-item");
         todoItem.setAttribute('data-id', todo.id);
 
+        const todoInfo = document.createElement("div");
+        todoInfo.classList.add("todo-info");
+
         const todoLeftDiv = document.createElement("div");
         todoLeftDiv.classList.add("todo-left");
 
@@ -71,7 +75,7 @@ function renderTodos(todos) {
         todoDesc.textContent = todo.description;
 
         const toDoButtons = document.createElement("div");
-        toDoButtons.classList.add("todo-buttons");
+        toDoButtons.classList.add("todo-buttons", "visibility");
         
         const toDoEditBtn = document.createElement("button");
         toDoEditBtn .classList.add("todo-edit-btn");
@@ -82,12 +86,13 @@ function renderTodos(todos) {
         toDoDeleteBtn.textContent = "Delete";
 
         elements.todoDiv.appendChild(todoItem);
-        todoItem.appendChild(todoLeftDiv);
+        todoItem.appendChild(todoInfo);
+        todoInfo.appendChild(todoLeftDiv);
         todoLeftDiv.appendChild(checkbox);
         todoLeftDiv.appendChild(todoText);
         todoText.appendChild(todoTitle);
         todoText.appendChild(todoDesc);
-        todoItem.appendChild(toDoButtons);
+        todoInfo.appendChild(toDoButtons);
         toDoButtons.appendChild(toDoEditBtn);
         toDoButtons.appendChild(toDoDeleteBtn);
     });
@@ -114,6 +119,7 @@ function changeFormToEdit(item, id) {
 function clearForm() {
     elements.form.title.value = "";
     elements.form.description.value = "";
+    elements.form.project.value = "";
     elements.form.date.value = "";
     elements.form.priority.value = "";
     elements.form.notes.value = "";
@@ -151,6 +157,10 @@ function renderProjects(projects) {
     })
 }
 
+function toggleActiveProject() {
+    let allProjects = document.querySelectorAll(".project");
+    allProjects.forEach(project => project.classList.remove("project-selected"))
+}
 
 function filterTodos(todos, id) {
     return todos.filter(todo => 
@@ -158,4 +168,4 @@ function filterTodos(todos, id) {
     )}
 
 
-export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos};
+export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject};

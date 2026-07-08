@@ -1,3 +1,5 @@
+
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -83,6 +85,9 @@ body {
 /* todos */
 .todos-container {
     margin: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }
 
 h1 {
@@ -101,11 +106,20 @@ h1 {
 .todo-item {
     padding: 8px 12px;
     cursor: pointer;
-    background-color: beige;
+    background-color: rgb(229, 229, 229);
+    border-radius: 8px;
     display: flex;
-    justify-content: start;
+    flex-direction: column;
     gap: 20px;
-    align-items: center;
+}
+
+.todo-item:hover {
+    background-color: rgb(211, 211, 211);
+}
+
+.todo-info {
+    display: flex;
+    justify-content: space-between;
 }
 
 .todo-left {
@@ -126,6 +140,50 @@ h1 {
 .todo-item-done {
     text-decoration: line-through;
     opacity: 0.5;
+}
+
+.add-btn {
+    padding: 8px 16px;
+    border: none;
+    background-color: rgb(191, 191, 191);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background-color: rgb(171, 171, 171);
+}
+
+.todo-form {
+    width: 500px;
+    background-color: rgb(229, 229, 229);
+    padding: 24px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-radius: 12px;
+}
+
+
+
+input{
+    outline: 0;
+    border: 1.5px solid black;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+input:active {
+    border-color: rgb(84, 130, 203);
+}
+
+input:focus {
+    border-color: rgb(84, 130, 203);
+}
+
+  
+.confirm-btn, .cancel-btn {
+    cursor: pointer;
 }
 
 .visibility {

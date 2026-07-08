@@ -1,7 +1,8 @@
 import { toDoList, projects, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo, createProject } from "./todos-object-manipulation.js";
-import { elements, showElement, hideElement, showForm, getFormValues, renderTodos, clearForm, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos } from "./dom-manipulation.js";
+import { elements, showElement, hideElement, showForm, getFormValues, renderTodos, clearForm, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject } from "./dom-manipulation.js";
 
 let editingId = null;
+
 
 elements.addBtn.addEventListener('click', (e) => {
     editingId = null;
@@ -13,6 +14,24 @@ elements.cancelBtn.addEventListener('click', (e) => {
     hideElement(elements.form);
     showElement(elements.addBtn);
 })
+
+document.addEventListener("mouseover", function(e) {
+  if (event.target.closest('.todo-item')) {
+      let toDo = event.target.closest('[data-id]');
+      let toDoId = toDo.getAttribute('data-id');
+      let buttons = toDo.querySelector(".todo-buttons"); 
+      buttons.classList.remove("visibility");
+  }
+});
+
+document.addEventListener("mouseout", function(e) {
+  if (event.target.closest('.todo-item')) {
+      let toDo = event.target.closest('[data-id]');
+      let toDoId = toDo.getAttribute('data-id');
+      let buttons = toDo.querySelector(".todo-buttons"); 
+      buttons.classList.add("visibility");
+  }
+});
 
 function handleSubmit(e) {
     e.preventDefault();
@@ -61,7 +80,7 @@ elements.addProjectBtn.addEventListener('click', (e) => {
 })
 
 
-function handleProjectSumbit(e) {
+function handleProjectSubmit(e) {
     e.preventDefault();
     const projectName = getProjectName();
     createProject(projectName);
@@ -70,12 +89,13 @@ function handleProjectSumbit(e) {
 
 
 function handleProjectChanges(e) {
+    toggleActiveProject();
     const project = e.target.closest('[data-id]');
     if (!project) return;
     const id = project.dataset.id;
 
     if (e.target.matches(".project")) {
-        //project.classList.add("project-selected");
+        project.classList.add("project-selected");
         let filteredTodos = filterTodos(toDoList, id);
         console.log(filteredTodos);
         console.log(id);
@@ -85,5 +105,5 @@ function handleProjectChanges(e) {
 
 elements.form.addEventListener('submit', handleSubmit);
 elements.todoDiv.addEventListener('click', handleTodoChanges);
-elements.projectsForm.addEventListener('submit', handleProjectSumbit);
-elements.projects.addEventListener('click', handleProjectChanges)
+elements.projectsForm.addEventListener('submit', handleProjectSubmit);
+elements.projects.addEventListener('click', handleProjectChanges);

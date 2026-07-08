@@ -24,8 +24,11 @@
 
 
             <div class="todos-container">
+                <div>
                 <h1>To-do list</h1>
                 <div class="todo-list-div"></div>
+                </div>
+
 
             <form class="todo-form visibility" method="get">
                 <h2 class="todo-form-title">Add new task</h2>
@@ -64,12 +67,13 @@
                 
                 <label>
                    Notes
-                    <input type="text" name="notes" id="form-notes"/>
+                   <textarea name="notes" id="form-notes"></textarea>
+          <!--           <input type="text" name="notes" id="form-notes"/> -->
                 </label>
 
                 <div class="form-btns">
-                <button id="cancel-btn" class="cancel-btn" type="button">Cancel</button>
                 <button id="confirm-btn" class="confirm-btn" type="submit">Save</button>
+                <button id="cancel-btn" class="cancel-btn" type="button">Cancel</button>
                 </div>
             </form>
 
