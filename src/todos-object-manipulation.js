@@ -21,6 +21,10 @@ function saveTodos() {
   localStorage.setItem("toDoList", JSON.stringify(toDoList));
 }
 
+function saveProjects() {
+  localStorage.setItem("projects", JSON.stringify(projects));
+}
+
 function createTodo(values) {
   const todo = new Todo(values);
   toDoList.push(todo);
@@ -71,8 +75,19 @@ function getTodos() {
 
 function createProject(name) {
   projects.push(name);
+  saveProjects();
   console.log(projects);
 }
 
+function loadProjects() {
+  const stored = localStorage.getItem("projects");
+  let parsed = stored ? JSON.parse(stored) : [];
+  projects = parsed;
+}
 
-export { toDoList, projects, loadTodos, getTodos, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo , createProject};
+function getProjects() {
+  return  projects;
+}
+
+
+export { toDoList, projects, loadTodos, getTodos, loadProjects, getProjects, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo , createProject};

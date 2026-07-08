@@ -83,7 +83,6 @@ function handleProjectChanges(e) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", renderProjects(projects));
 elements.form.addEventListener('submit', handleSubmit);
 elements.todoDiv.addEventListener('click', handleTodoChanges);
 elements.projectsForm.addEventListener('submit', handleProjectSumbit);
