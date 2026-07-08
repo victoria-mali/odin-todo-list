@@ -69,7 +69,6 @@ function getTodos() {
   return toDoList;
 }
 
-
 function createProject(name) {
   projects.push(name);
   console.log(projects);

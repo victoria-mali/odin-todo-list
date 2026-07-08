@@ -131,6 +131,7 @@ function getProjectName() {
 
 function renderProjects(projects) {
     elements.projects.innerHTML = "";
+    elements.form.project.innerHTML = "";
 
     projects.forEach(project => {
         let newProject = document.createElement("button");
