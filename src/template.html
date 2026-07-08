@@ -7,23 +7,25 @@
 </head>
 <body>
         <div class="container">
-            <h1>To-do list</h1>
-
-            <div class="projects-container">
-                <h2>Projects</h2>
+            
+                <div class="projects-container">
+                <h2 class="projects-title">My projects</h2>
 
                 <div class="projects">
                 </div>
 
                 <form class="projects-form visibility" method="get">
-                    <input type="text" name="project" class="projects-form-name">
+                    <input type="text" name="project" class="projects-form-name" placeholder="Add your project">
                     <button class="projects-form-btn" type="submit">+</button>
                 </form>
 
-                <button class="new-project-btn">New project</button>
+                <button class="new-project-btn">Add project</button>
             </div>
 
-            <div class="todo-list-div"></div>
+
+            <div class="todos-container">
+                <h1>To-do list</h1>
+                <div class="todo-list-div"></div>
 
             <form class="todo-form visibility" method="get">
                 <h2 class="todo-form-title">Add new task</h2>
@@ -72,6 +74,8 @@
             </form>
 
             <button class="add-btn" id="add-btn">Add new item</button>
+            </div>
+            
          </div>
 </body>
 </html>

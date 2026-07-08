@@ -134,7 +134,7 @@ function renderProjects(projects) {
     elements.form.project.innerHTML = "";
 
     projects.forEach(project => {
-        let newProject = document.createElement("button");
+        let newProject = document.createElement("div");
         elements.projects.appendChild(newProject)
         newProject.setAttribute('data-id', project);
         newProject.classList.add("project");

@@ -75,6 +75,7 @@ function handleProjectChanges(e) {
     const id = project.dataset.id;
 
     if (e.target.matches(".project")) {
+        //project.classList.add("project-selected");
         let filteredTodos = filterTodos(toDoList, id);
         console.log(filteredTodos);
         console.log(id);

@@ -13,10 +13,76 @@ body {
     font-family: Helvetica, Arial, sans-serif;
 }
 
+
+/* structure */
 .container {
-    width: 1200px;
-    margin: 40px auto 0px auto;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    height: 100vh;
+}
+
+/* projects */
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(222, 222, 222);
+    padding: 40px;
+    gap: 24px;
+}
+
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.project {
+    background-color: rgb(210, 210, 210);
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.project:hover {
+    background-color: rgb(191, 191, 191);
+}
+
+.project-selected {
+    background-color: rgb(172, 172, 172);
+}
+
+.new-project-btn {
+    background-color: rgb(210, 210, 210, 0);
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    align-self: self-end;
+}
+
+.new-project-btn:hover {
+    background-color: rgb(210, 210, 210);
+}
+
+.projects-form {
+    display: flex;
+    gap: 4px;
+}
+
+.projects-form-name {
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.projects-form-name:focus {
+    border-color: rgb(96, 59, 148);
+    outline: 3px solid transparent;
+}
+
+/* todos */
+.todos-container {
+    margin: 40px;
 }
 
 h1 {
@@ -26,7 +92,6 @@ h1 {
 .todo-list-div {
     width: 600px;
     text-align: left;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 12px;
