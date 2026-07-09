@@ -128,6 +128,7 @@ function clearForm() {
 }
 
 
+// Projects
 function addProjectForm() {
     showElement(elements.projectsForm);
 }
@@ -135,7 +136,6 @@ function addProjectForm() {
 function getProjectName() {
     return elements.projectsForm.project.value;
 }
-
 
 function renderProjects(projects) {
     elements.projects.innerHTML = "";
@@ -182,14 +182,17 @@ function filterTodos(todos, id) {
         todo.project === id
     )}
 
-function editProject(project, id) {
+function renameProject(project, id) {
     let editDiv = document.createElement("div");
-    editDiv.classList.add("edit-project-name");
+    editDiv.classList.add("rename-project");
     editDiv.setAttribute('data-id', id);
+
     let input = document.createElement("input");
+
     let cancelBtn = document.createElement("button");
     cancelBtn.classList.add("cancel-edit-project")
     cancelBtn.textContent = "x";
+    
     let confirmBtn = document.createElement("button");
     confirmBtn.textContent = "✓";
     
@@ -203,9 +206,5 @@ function editProject(project, id) {
     project.replaceWith(editDiv);
 }
 
-function completeEditingProject(project) {
-    let editDiv = document.querySelector(".edit-project-name");
-    editDiv.replaceWith(project);
-}
 
-export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, editProject, completeEditingProject};
+export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, renameProject};

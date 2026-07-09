@@ -1,5 +1,4 @@
 let toDoList = [];
-let projects = [];
 
 class Todo {
     constructor({title, description, project = null, dueDate, priority, notes, done = false, id}) {
@@ -17,13 +16,6 @@ class Todo {
      }
 }
 
-function saveTodos() {
-  localStorage.setItem("toDoList", JSON.stringify(toDoList));
-}
-
-function saveProjects() {
-  localStorage.setItem("projects", JSON.stringify(projects));
-}
 
 function createTodo(values) {
   const todo = new Todo(values);
@@ -61,6 +53,12 @@ function replaceTodo(id, newValues) {
   console.log(toDoList);
 }
 
+
+//localStorage functions
+function saveTodos() {
+  localStorage.setItem("toDoList", JSON.stringify(toDoList));
+}
+
 function loadTodos() {
   const stored = localStorage.getItem("toDoList");
   let parsed = stored ? JSON.parse(stored) : [];
@@ -73,28 +71,5 @@ function getTodos() {
   return toDoList;
 }
 
-function createProject(name) {
-  projects.push(name);
-  saveProjects();
-  console.log(projects);
-}
 
-function deleteProject(id) {
-    const itemIndex = projects.findIndex(x => x === id);
-    projects.splice(itemIndex, 1);
-    saveProjects();
-    console.log(projects);
-}
-
-function loadProjects() {
-  const stored = localStorage.getItem("projects");
-  let parsed = stored ? JSON.parse(stored) : [];
-  projects = parsed;
-}
-
-function getProjects() {
-  return  projects;
-}
-
-
-export { toDoList, projects, loadTodos, getTodos, loadProjects, getProjects, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo , createProject, deleteProject};
+export { toDoList, loadTodos, getTodos, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo };

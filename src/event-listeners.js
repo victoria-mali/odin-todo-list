@@ -1,6 +1,9 @@
-import { toDoList, projects, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo, createProject, deleteProject } from "./todos-object-manipulation.js";
-import { elements, showElement, hideElement, showForm, getFormValues, renderTodos, clearForm, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, editProject, completeEditingProject } from "./dom-manipulation.js";
+import { toDoList, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo } from "./todos-object-manipulation.js";
+import { elements, showElement, hideElement, showForm, getFormValues, renderTodos, clearForm, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, renameProject } from "./dom-manipulation.js";
+import { projects, createProject, deleteProject}  from "./projects-manipulation.js"
 
+
+//Todos
 let editingId = null;
 
 
@@ -14,12 +17,6 @@ elements.cancelBtn.addEventListener('click', (e) => {
     hideElement(elements.form);
     showElement(elements.addBtn);
 })
-
-elements.projectsFormCancelBtn.addEventListener('click', (e) => {
-    hideElement(elements.projectsForm);
-    elements.projectsForm.project.value = "";
-})
-
 
 
 function handleSubmit(e) {
@@ -64,6 +61,7 @@ function handleTodoChanges(e) {
     }
 }
 
+//Projects
 elements.addProjectBtn.addEventListener('click', (e) => {
     addProjectForm();
 })
@@ -76,11 +74,6 @@ function handleProjectSubmit(e) {
     renderProjects(projects);
 }
 
-elements.allTodosTab.addEventListener('click', (e) => {
-    toggleActiveProject();
-    renderTodos(toDoList);
-    elements.allTodosTab.classList.add("project-selected");
-})
 
 function handleProjectChanges(e) {
     toggleActiveProject();
@@ -100,10 +93,22 @@ function handleProjectChanges(e) {
         renderProjects(projects);
     }
         if (e.target.matches('.edit-project-btn')) {
-        editProject(project, id);
+        renameProject(project, id);
     }
 
 }
+
+
+elements.allTodosTab.addEventListener('click', (e) => {
+    toggleActiveProject();
+    renderTodos(toDoList);
+    elements.allTodosTab.classList.add("project-selected");
+})
+
+elements.projectsFormCancelBtn.addEventListener('click', (e) => {
+    hideElement(elements.projectsForm);
+    elements.projectsForm.project.value = "";
+})
 
 
 
