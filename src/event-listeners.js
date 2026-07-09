@@ -1,6 +1,6 @@
 import { toDoList, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo } from "./todos-object-manipulation.js";
-import { elements, showElement, hideElement, showForm, getFormValues, renderTodos, clearForm, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, renameProject } from "./dom-manipulation.js";
-import { projects, createProject, deleteProject}  from "./projects-manipulation.js"
+import { elements, showElement, hideElement, showForm, getFormValues, renderTodos, clearForm, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, editProjectName, getNewProjectName } from "./dom-manipulation.js";
+import { projects, createProject, deleteProject, renameProject}  from "./projects-manipulation.js"
 
 
 //Todos
@@ -78,6 +78,7 @@ function handleProjectSubmit(e) {
 function handleProjectChanges(e) {
     toggleActiveProject();
     const project = e.target.closest('[data-id]');
+    console.log(project);
     if (!project) return;
     const id = project.dataset.id;
 
@@ -93,7 +94,15 @@ function handleProjectChanges(e) {
         renderProjects(projects);
     }
         if (e.target.matches('.edit-project-btn')) {
-        renameProject(project, id);
+        editProjectName(project, id);
+    }
+        if (e.target.matches('.cancel-edit-project')) {
+        renderProjects(projects);
+    }
+         if (e.target.matches('.save-edit-project')) {
+            let newName = getNewProjectName();
+            renameProject(newName, id);
+            renderProjects(projects);
     }
 
 }

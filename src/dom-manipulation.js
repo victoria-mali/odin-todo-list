@@ -182,18 +182,21 @@ function filterTodos(todos, id) {
         todo.project === id
     )}
 
-function renameProject(project, id) {
+
+function editProjectName(project, id) {
     let editDiv = document.createElement("div");
     editDiv.classList.add("rename-project");
     editDiv.setAttribute('data-id', id);
 
     let input = document.createElement("input");
+    input.classList.add("project-name-input");
 
     let cancelBtn = document.createElement("button");
-    cancelBtn.classList.add("cancel-edit-project")
+    cancelBtn.classList.add("cancel-edit-project");
     cancelBtn.textContent = "x";
     
     let confirmBtn = document.createElement("button");
+    confirmBtn.classList.add("save-edit-project");
     confirmBtn.textContent = "✓";
     
 
@@ -206,5 +209,13 @@ function renameProject(project, id) {
     project.replaceWith(editDiv);
 }
 
+function getNewProjectName() {
+    let input = document.querySelector(".project-name-input");
+    console.log(input);
+    return input.value;
+}
 
-export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, renameProject};
+
+
+
+export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, editProjectName, getNewProjectName};
