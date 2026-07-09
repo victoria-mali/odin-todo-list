@@ -9,7 +9,9 @@ let editingId = null;
 
 elements.addBtn.addEventListener('click', (e) => {
     editingId = null;
-    showForm();
+    let selected = document.querySelector(".project-selected");
+    let selectedId = selected.id;
+    showForm(selectedId);
     hideElement(elements.addBtn);
 })
 
@@ -104,7 +106,7 @@ function handleProjectChanges(e) {
     if (!project) return;
     const id = project.dataset.id;
 
-    if (e.target.matches(".project")) {
+    if (e.target.closest(".project")) {
         project.classList.add("project-selected");
         let filteredTodos = filterTodos(toDoList, id);
         console.log(filteredTodos);
@@ -119,6 +121,7 @@ function handleProjectChanges(e) {
     }
         if (e.target.matches('.edit-project-btn')) {
         editProjectName(project, id);
+        
     }
         if (e.target.matches('.cancel-edit-project')) {
         renderProjects(projects);
@@ -137,6 +140,7 @@ elements.allTodosTab.addEventListener('click', (e) => {
     toggleActiveProject();
     renderTodos(toDoList);
     elements.allTodosTab.classList.add("project-selected");
+    showElement(elements.addBtn);
 })
 
 elements.projectsFormCancelBtn.addEventListener('click', (e) => {

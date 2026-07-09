@@ -25,14 +25,19 @@ function hideElement(element) {
 }
 
 
-function showForm() {
+function showForm(selectedId) {
     clearForm();
     elements.formTitle.textContent = "Add new item";
-            let defaultProjectOption = document.createElement("option");
+        let defaultProjectOption = document.createElement("option");
         defaultProjectOption.value = "Default";
         defaultProjectOption.textContent = "Default";
-        defaultProjectOption.setAttribute('selected', true);
         elements.form.project.appendChild(defaultProjectOption);
+
+        if (selectedId !== "all-tasks") {
+            document.querySelector("#form-project").value = selectedId
+        } else {
+            defaultProjectOption.setAttribute('selected', true);
+        }
     elements.todosContainer.appendChild(elements.form);
     showElement(elements.form);
 }
