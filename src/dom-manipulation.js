@@ -3,8 +3,10 @@ const elements = {
     projects: document.querySelector(".projects"),
     addProjectBtn: document.querySelector(".new-project-btn"),
     projectsForm: document.querySelector(".projects-form"),
-    projectsFormBtn: document.querySelector(".projects-form-btn"),
+    projectsFormBtn: document.querySelector(".projects-form-save-btn"),
+    projectsFormCancelBtn: document.querySelector(".projects-form-cancel-btn"),
     todosContainer: document.querySelector(".todos-container"),
+    allTodosTab: document.querySelector(".all-todos-btn"),
     form: document.querySelector(".todo-form"),
     formTitle: document.querySelector(".todo-form-title"),
     cancelBtn: document.querySelector(".cancel-btn"),
@@ -75,7 +77,7 @@ function renderTodos(todos) {
         todoDesc.textContent = todo.description;
 
         const toDoButtons = document.createElement("div");
-        toDoButtons.classList.add("todo-buttons", "visibility");
+        toDoButtons.classList.add("todo-buttons");
         
         const toDoEditBtn = document.createElement("button");
         toDoEditBtn .classList.add("todo-edit-btn");
@@ -145,7 +147,20 @@ function renderProjects(projects) {
         newProject.setAttribute('data-id', project);
         newProject.classList.add("project");
         newProject.id = project;
-        newProject.textContent = project;
+
+        let projectTitle = document.createElement("p");
+        projectTitle.textContent = project;
+        newProject.appendChild(projectTitle);
+
+        let editProjectBtn = document.createElement("button");
+        editProjectBtn.classList.add("edit-project-btn");
+        editProjectBtn.textContent = "#";
+        newProject.appendChild(editProjectBtn);
+
+        let deleteProjectBtn = document.createElement("button");
+        deleteProjectBtn.classList.add("delete-project-btn");
+        deleteProjectBtn.textContent = "x";
+        newProject.appendChild(deleteProjectBtn);
 
         let projectOption = document.createElement("option");
         projectOption.value = project;
@@ -167,5 +182,30 @@ function filterTodos(todos, id) {
         todo.project === id
     )}
 
+function editProject(project, id) {
+    let editDiv = document.createElement("div");
+    editDiv.classList.add("edit-project-name");
+    editDiv.setAttribute('data-id', id);
+    let input = document.createElement("input");
+    let cancelBtn = document.createElement("button");
+    cancelBtn.classList.add("cancel-edit-project")
+    cancelBtn.textContent = "x";
+    let confirmBtn = document.createElement("button");
+    confirmBtn.textContent = "✓";
+    
 
-export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject};
+    editDiv.appendChild(input);
+    editDiv.appendChild(cancelBtn);
+    editDiv.appendChild(confirmBtn);
+
+
+    input.value = id;
+    project.replaceWith(editDiv);
+}
+
+function completeEditingProject(project) {
+    let editDiv = document.querySelector(".edit-project-name");
+    editDiv.replaceWith(project);
+}
+
+export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, editProject, completeEditingProject};

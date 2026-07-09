@@ -1,8 +1,8 @@
 let toDoList = [];
-let projects = ["Default"];
+let projects = [];
 
 class Todo {
-    constructor({title, description, project = "Default", dueDate, priority, notes, done = false, id}) {
+    constructor({title, description, project = null, dueDate, priority, notes, done = false, id}) {
         this.title = title;
         this.description = description;
         this.project = project,
@@ -79,6 +79,13 @@ function createProject(name) {
   console.log(projects);
 }
 
+function deleteProject(id) {
+    const itemIndex = projects.findIndex(x => x === id);
+    projects.splice(itemIndex, 1);
+    saveProjects();
+    console.log(projects);
+}
+
 function loadProjects() {
   const stored = localStorage.getItem("projects");
   let parsed = stored ? JSON.parse(stored) : [];
@@ -90,4 +97,4 @@ function getProjects() {
 }
 
 
-export { toDoList, projects, loadTodos, getTodos, loadProjects, getProjects, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo , createProject};
+export { toDoList, projects, loadTodos, getTodos, loadProjects, getProjects, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo , createProject, deleteProject};
