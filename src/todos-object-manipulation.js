@@ -1,3 +1,5 @@
+import { filterTodos } from "./dom-manipulation.js";
+
 let toDoList = [];
 
 class Todo {
@@ -53,6 +55,17 @@ function replaceTodo(id, newValues) {
   console.log(toDoList);
 }
 
+function changeTodoProperty(newName, id) {
+    let projectTodos = filterTodos(toDoList, id);
+    console.log(projectTodos);
+    projectTodos.forEach(project => {
+    project.project = newName;
+    const todoItemIndex = toDoList.findIndex(x => x.project === id);
+    toDoList.splice(todoItemIndex, 1, project);
+    })
+}
+
+
 
 //localStorage functions
 function saveTodos() {
@@ -72,4 +85,4 @@ function getTodos() {
 }
 
 
-export { toDoList, loadTodos, getTodos, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo };
+export { toDoList, loadTodos, getTodos, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo, changeTodoProperty };

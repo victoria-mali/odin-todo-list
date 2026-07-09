@@ -162,6 +162,11 @@ function renderProjects(projects) {
         deleteProjectBtn.textContent = "x";
         newProject.appendChild(deleteProjectBtn);
 
+        let defaultProjectOption = document.createElement("option");
+        defaultProjectOption.value = "";
+        defaultProjectOption.textContent = "Default";
+        elements.form.project.appendChild(defaultProjectOption);
+
         let projectOption = document.createElement("option");
         projectOption.value = project;
         projectOption.textContent = project;

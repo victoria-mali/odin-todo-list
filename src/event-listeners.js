@@ -1,4 +1,4 @@
-import { toDoList, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo } from "./todos-object-manipulation.js";
+import { toDoList, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo, changeTodoProperty } from "./todos-object-manipulation.js";
 import { elements, showElement, hideElement, showForm, getFormValues, renderTodos, clearForm, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, editProjectName, getNewProjectName } from "./dom-manipulation.js";
 import { projects, createProject, deleteProject, renameProject}  from "./projects-manipulation.js"
 
@@ -102,6 +102,7 @@ function handleProjectChanges(e) {
          if (e.target.matches('.save-edit-project')) {
             let newName = getNewProjectName();
             renameProject(newName, id);
+            changeTodoProperty(newName, id);
             renderProjects(projects);
     }
 

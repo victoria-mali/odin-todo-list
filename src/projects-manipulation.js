@@ -1,3 +1,6 @@
+import { toDoList } from "./todos-object-manipulation.js";
+
+
 let projects = [];
 
 
@@ -15,8 +18,18 @@ function deleteProject(id) {
 }
 
 function renameProject(newName, id) {
-    const itemIndex = projects.findIndex(x => x.id === id);
-    projects.splice(itemIndex, 1, newName);
+    const projectItemIndex = projects.findIndex(x => x === id);
+    projects.splice(projectItemIndex, 1, newName);
+    console.log(projects);
+
+/*     let projectTodos = filterTodos(toDoList, id);
+    console.log(projectTodos);
+    projectTodos.forEach(project => {
+      project.project = newName;
+      const todoItemIndex = toDoList.findIndex(x => x.project === id);
+      toDoList.splice(todoItemIndex, 1, project);
+    }) */
+    saveProjects();
 }
 
 
