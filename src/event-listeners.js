@@ -23,14 +23,30 @@ function handleSubmit(e) {
     e.preventDefault();
     if (editingId === null) {
         const values = getFormValues();
+        console.log(values);
         createTodo(values);
-        renderTodos(toDoList);
+            let selected = document.querySelector(".project-selected");
+            let selectedId = selected.id;
+            if (selectedId !== "all-tasks") {
+                let filteredTodos = filterTodos(toDoList, selectedId);
+                renderTodos(filteredTodos);
+            } else {
+                renderTodos(toDoList);
+            }
+
         showElement(elements.addBtn);
         clearForm();
     } else {
         let newValues = getFormValues();
         replaceTodo(editingId, newValues);
-        renderTodos(toDoList);
+                    let selected = document.querySelector(".project-selected");
+            let selectedId = selected.id;
+            if (selectedId !== "all-tasks") {
+                let filteredTodos = filterTodos(toDoList, selectedId);
+                renderTodos(filteredTodos);
+            } else {
+                renderTodos(toDoList);
+            };
         clearForm();
         showElement(elements.addBtn);
         editingId = null;
@@ -44,13 +60,19 @@ function handleTodoChanges(e) {
 
     if (e.target.matches('.todo-delete-btn')) {
         deleteTodo(id);
-        renderTodos(toDoList);
+                    let selected = document.querySelector(".project-selected");
+            let selectedId = selected.id;
+            if (selectedId !== "all-tasks") {
+                let filteredTodos = filterTodos(toDoList, selectedId);
+                renderTodos(filteredTodos);
+            } else {
+                renderTodos(toDoList);
+            }
         showElement(elements.addBtn);
     }
 
     if (e.target.matches('.checkbox')) {
         checkTodo(id);
-        renderTodos(toDoList);
     }
 
     if (e.target.matches('.todo-edit-btn')) {

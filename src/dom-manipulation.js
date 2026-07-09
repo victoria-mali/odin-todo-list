@@ -28,6 +28,11 @@ function hideElement(element) {
 function showForm() {
     clearForm();
     elements.formTitle.textContent = "Add new item";
+            let defaultProjectOption = document.createElement("option");
+        defaultProjectOption.value = "Default";
+        defaultProjectOption.textContent = "Default";
+        defaultProjectOption.setAttribute('selected', true);
+        elements.form.project.appendChild(defaultProjectOption);
     elements.todosContainer.appendChild(elements.form);
     showElement(elements.form);
 }
@@ -43,6 +48,8 @@ function getFormValues() {
         id: crypto.randomUUID(),
     }
 }
+
+
 
 function renderTodos(todos) {
     elements.todoDiv.innerHTML = "";
@@ -140,11 +147,7 @@ function getProjectName() {
 function renderProjects(projects) {
     elements.projects.innerHTML = "";
     elements.form.project.innerHTML = "";
-    
-         let defaultProjectOption = document.createElement("option");
-        defaultProjectOption.value = "";
-        defaultProjectOption.textContent = "Default";
-        elements.form.project.appendChild(defaultProjectOption);
+
 
     projects.forEach(project => {
         let newProject = document.createElement("div");
