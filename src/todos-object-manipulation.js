@@ -66,7 +66,6 @@ function changeTodoProperty(newName, id) {
 }
 
 
-
 //localStorage functions
 function saveTodos() {
   localStorage.setItem("toDoList", JSON.stringify(toDoList));

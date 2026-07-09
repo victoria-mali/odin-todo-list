@@ -1,8 +1,4 @@
-import { toDoList } from "./todos-object-manipulation.js";
-
-
 let projects = [];
-
 
 function createProject(name) {
   projects.push(name);
@@ -21,14 +17,6 @@ function renameProject(newName, id) {
     const projectItemIndex = projects.findIndex(x => x === id);
     projects.splice(projectItemIndex, 1, newName);
     console.log(projects);
-
-/*     let projectTodos = filterTodos(toDoList, id);
-    console.log(projectTodos);
-    projectTodos.forEach(project => {
-      project.project = newName;
-      const todoItemIndex = toDoList.findIndex(x => x.project === id);
-      toDoList.splice(todoItemIndex, 1, project);
-    }) */
     saveProjects();
 }
 

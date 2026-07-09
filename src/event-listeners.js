@@ -90,8 +90,10 @@ function handleProjectChanges(e) {
         showElement(elements.addBtn);
     }
         if (e.target.matches('.delete-project-btn')) {
+        changeTodoProperty("Default", id);
         deleteProject(id);
         renderProjects(projects);
+        console.log(toDoList);
     }
         if (e.target.matches('.edit-project-btn')) {
         editProjectName(project, id);

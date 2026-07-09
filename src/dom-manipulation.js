@@ -140,6 +140,11 @@ function getProjectName() {
 function renderProjects(projects) {
     elements.projects.innerHTML = "";
     elements.form.project.innerHTML = "";
+    
+         let defaultProjectOption = document.createElement("option");
+        defaultProjectOption.value = "";
+        defaultProjectOption.textContent = "Default";
+        elements.form.project.appendChild(defaultProjectOption);
 
     projects.forEach(project => {
         let newProject = document.createElement("div");
@@ -161,11 +166,6 @@ function renderProjects(projects) {
         deleteProjectBtn.classList.add("delete-project-btn");
         deleteProjectBtn.textContent = "x";
         newProject.appendChild(deleteProjectBtn);
-
-        let defaultProjectOption = document.createElement("option");
-        defaultProjectOption.value = "";
-        defaultProjectOption.textContent = "Default";
-        elements.form.project.appendChild(defaultProjectOption);
 
         let projectOption = document.createElement("option");
         projectOption.value = project;
