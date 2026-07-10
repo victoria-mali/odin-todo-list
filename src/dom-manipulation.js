@@ -32,7 +32,7 @@ function showForm(selectedId) {
         if (selectedId !== "all-tasks") {
             elements.form.project.value = selectedId;
         } else {
-            elements.form.project.value = "default";
+            elements.form.project.value = "Default";
         }
     elements.todosContainer.appendChild(elements.form);
     showElement(elements.form);

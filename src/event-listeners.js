@@ -100,8 +100,6 @@ function handleProjectSubmit(e) {
 
 
 function handleProjectChanges(e) {
-    console.log('target:', e.target);
-console.log('queried input:', document.querySelector('.project-name-input'));
     toggleActiveProject();
     const project = e.target.closest('[data-id]');
     console.log(project);
@@ -118,10 +116,7 @@ console.log('queried input:', document.querySelector('.project-name-input'));
         if (e.target.matches('.delete-project-btn')) {
         changeTodoProperty("Default", id);
         deleteProject(id);
-
-            elements.allTodosTab.click();
-
-        
+        elements.allTodosTab.click();
         renderProjects(projects);
         console.log(toDoList);
     }
