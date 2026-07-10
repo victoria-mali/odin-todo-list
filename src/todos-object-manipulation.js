@@ -3,7 +3,7 @@ import { filterTodos } from "./dom-manipulation.js";
 let toDoList = [];
 
 class Todo {
-    constructor({title, description, project = null, dueDate, priority, notes, done = false, id}) {
+    constructor({title, description, project = "Default", dueDate, priority, notes, done = false, id}) {
         this.title = title;
         this.description = description;
         this.project = project,

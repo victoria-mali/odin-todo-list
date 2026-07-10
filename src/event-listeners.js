@@ -62,7 +62,7 @@ function handleTodoChanges(e) {
 
     if (e.target.matches('.todo-delete-btn')) {
         deleteTodo(id);
-                    let selected = document.querySelector(".project-selected");
+            let selected = document.querySelector(".project-selected");
             let selectedId = selected.id;
             if (selectedId !== "all-tasks") {
                 let filteredTodos = filterTodos(toDoList, selectedId);
@@ -100,6 +100,8 @@ function handleProjectSubmit(e) {
 
 
 function handleProjectChanges(e) {
+    console.log('target:', e.target);
+console.log('queried input:', document.querySelector('.project-name-input'));
     toggleActiveProject();
     const project = e.target.closest('[data-id]');
     console.log(project);
@@ -116,13 +118,17 @@ function handleProjectChanges(e) {
         if (e.target.matches('.delete-project-btn')) {
         changeTodoProperty("Default", id);
         deleteProject(id);
+
+            elements.allTodosTab.click();
+
+        
         renderProjects(projects);
         console.log(toDoList);
     }
         if (e.target.matches('.edit-project-btn')) {
         editProjectName(project, id);
-        
-    }
+        }   
+
         if (e.target.matches('.cancel-edit-project')) {
         renderProjects(projects);
     }
@@ -134,6 +140,12 @@ function handleProjectChanges(e) {
     }
 
 }
+
+document.addEventListener('click', (e) => {
+    if (document.querySelector('.rename-project') && (!document.querySelector('.rename-project').contains(e.target))) {
+        renderProjects(projects);
+    }
+})
 
 
 elements.allTodosTab.addEventListener('click', (e) => {
@@ -148,6 +160,12 @@ elements.projectsFormCancelBtn.addEventListener('click', (e) => {
     elements.projectsForm.project.value = "";
 })
 
+/* document.addEventListener('click', (e) => {
+    if (document.querySelector('.rename-project') && (!document.querySelector('.rename-project').contains(e.target))){
+    renderProjects(projects);
+    }
+})
+ */
 
 
 document.addEventListener("DOMContentLoaded", (e) => {

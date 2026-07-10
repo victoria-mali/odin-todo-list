@@ -13,6 +13,7 @@ const elements = {
     confirmBtn: document.querySelector(".confirm-btn"),
     addBtn: document.querySelector(".add-btn"),
     todoDiv: document.querySelector(".todo-list-div"),
+    defaultProject: document.querySelector("#default"),
 }
 
 
@@ -28,15 +29,10 @@ function hideElement(element) {
 function showForm(selectedId) {
     clearForm();
     elements.formTitle.textContent = "Add new item";
-        let defaultProjectOption = document.createElement("option");
-        defaultProjectOption.value = "Default";
-        defaultProjectOption.textContent = "Default";
-        elements.form.project.appendChild(defaultProjectOption);
-
         if (selectedId !== "all-tasks") {
-            document.querySelector("#form-project").value = selectedId
+            elements.form.project.value = selectedId;
         } else {
-            defaultProjectOption.setAttribute('selected', true);
+            elements.form.project.value = "default";
         }
     elements.todosContainer.appendChild(elements.form);
     showElement(elements.form);
@@ -151,7 +147,7 @@ function getProjectName() {
 
 function renderProjects(projects) {
     elements.projects.innerHTML = "";
-    elements.form.project.innerHTML = "";
+   // elements.form.project.innerHTML = "";
 
 
     projects.forEach(project => {
