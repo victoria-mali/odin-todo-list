@@ -78,6 +78,7 @@ function handleTodoChanges(e) {
     }
 
     if (e.target.matches('.todo-edit-btn')) {
+        clearForm()
         editingId = id;
         const values = retrieveTodo(id);
         prefillForm(values);
@@ -133,14 +134,7 @@ function handleProjectChanges(e) {
             changeTodoProperty(newName, id);
             renderProjects(projects);
     }
-
 }
-
-document.addEventListener('click', (e) => {
-    if (document.querySelector('.rename-project') && (!document.querySelector('.rename-project').contains(e.target))) {
-        renderProjects(projects);
-    }
-})
 
 
 elements.allTodosTab.addEventListener('click', (e) => {
@@ -155,12 +149,14 @@ elements.projectsFormCancelBtn.addEventListener('click', (e) => {
     elements.projectsForm.project.value = "";
 })
 
-/* document.addEventListener('click', (e) => {
-    if (document.querySelector('.rename-project') && (!document.querySelector('.rename-project').contains(e.target))){
-    renderProjects(projects);
+document.addEventListener('click', (e) => {
+    console.log('document listener - target:', e.target);
+    console.log('rename-project exists?', document.querySelector('.rename-project'));
+    console.log('is edit btn?', e.target.matches('.edit-project-btn'));
+    if (document.querySelector('.rename-project') && (!document.querySelector('.rename-project').contains(e.target)) && (!e.target.matches('.edit-project-btn'))){
+        renderProjects(projects);
     }
 })
- */
 
 
 document.addEventListener("DOMContentLoaded", (e) => {
