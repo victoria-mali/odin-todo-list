@@ -59,7 +59,7 @@ function handleTodoChanges(e) {
     if (!todoItem) return;
     const id = todoItem.dataset.id;
 
-    if (e.target.matches('.todo-delete-btn')) {
+    if (e.target.closest('.todo-delete-btn')) {
         deleteTodo(id);
             let selected = document.querySelector(".project-selected");
             let selectedId = selected.id;
@@ -76,11 +76,13 @@ function handleTodoChanges(e) {
         checkTodo(id);
     }
 
-    if (e.target.matches('.todo-edit-btn')) {
+    if (e.target.closest('.todo-edit-btn')) {
         clearForm()
         editingId = id;
         const values = retrieveTodo(id);
         prefillForm(values);
+/*         let formDiv = todoItem.querySelector(".edit-todo-form");
+        console.log(formDiv); */
         changeFormToEdit(todoItem, editingId);
     }
 }

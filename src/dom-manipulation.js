@@ -12,7 +12,7 @@ const elements = {
     allTodosTab: document.querySelector(".all-todos-btn"),
     form: document.querySelector(".todo-form"),
     formTitle: document.querySelector(".todo-form-title"),
-    cancelBtn: document.querySelector(".cancel-btn"),
+    cancelBtn: document.querySelector(".cancel-form-btn"),
     confirmBtn: document.querySelector(".confirm-btn"),
     addBtn: document.querySelector(".add-btn"),
     todoDiv: document.querySelector(".todo-list-div"),
@@ -63,11 +63,17 @@ function renderTodos(todos) {
         todoItem.classList.add("todo-item");
         todoItem.setAttribute('data-id', todo.id);
 
+        const todoItemContent = document.createElement("div");
+        todoItemContent.classList.add("todo-item-content");
+
         const todoInfo = document.createElement("div");
         todoInfo.classList.add("todo-info");
 
         const todoLeftDiv = document.createElement("div");
         todoLeftDiv.classList.add("todo-left");
+
+        const checkboxLabel = document.createElement("label");
+        checkboxLabel.classList.add("checkbox-label");
 
         const checkbox = document.createElement("input");
         checkbox.classList.add("checkbox");
@@ -75,6 +81,9 @@ function renderTodos(todos) {
         checkbox.classList.add("checkbox");
         checkbox.name = "checkbox";
         checkbox.checked = todo.done;
+
+        const checkmark = document.createElement("span");
+        checkmark.classList.add("checkmark");
 
         const todoText = document.createElement("div");
         todoText.classList.add("todo-text");
@@ -90,24 +99,37 @@ function renderTodos(todos) {
         const toDoButtons = document.createElement("div");
         toDoButtons.classList.add("todo-buttons");
         
-        const toDoEditBtn = document.createElement("button");
-        toDoEditBtn .classList.add("todo-edit-btn");
-        toDoEditBtn .textContent = "Edit";
+        const toDoEditBtn = document.createElement("a");
+        toDoEditBtn.classList.add("todo-edit-btn", "todo-btn");
+        let editIcon = document.createElement("img");
+        editIcon.classList.add("edit-project-icon", "project-icon")
+        editIcon.src = editIconUrl;
 
-        const toDoDeleteBtn = document.createElement("button");
-        toDoDeleteBtn.classList.add("todo-delete-btn");
-        toDoDeleteBtn.textContent = "Delete";
+        const toDoDeleteBtn = document.createElement("a");
+        toDoDeleteBtn.classList.add("todo-delete-btn", "todo-btn");
+        let deleteIcon = document.createElement("img");
+        deleteIcon.classList.add("delete-project-icon", "project-icon");
+        deleteIcon.src = deleteIconUrl;
+
+        const editTodoForm = document.createElement("div");
+        editTodoForm.classList.add("edit-todo-form", "visibility");
 
         elements.todoDiv.appendChild(todoItem);
-        todoItem.appendChild(todoInfo);
+        todoItem.appendChild(todoItemContent);
+        todoItemContent.appendChild(todoInfo);
         todoInfo.appendChild(todoLeftDiv);
-        todoLeftDiv.appendChild(checkbox);
+        todoLeftDiv.appendChild(checkboxLabel);
+        checkboxLabel.appendChild(checkbox);
+        checkboxLabel.appendChild(checkmark);
         todoLeftDiv.appendChild(todoText);
         todoText.appendChild(todoTitle);
         todoText.appendChild(todoDesc);
         todoInfo.appendChild(toDoButtons);
         toDoButtons.appendChild(toDoEditBtn);
+        toDoEditBtn.appendChild(editIcon);
         toDoButtons.appendChild(toDoDeleteBtn);
+        toDoDeleteBtn.appendChild(deleteIcon);
+        todoItem.appendChild(editTodoForm);
     });
 
 
@@ -124,7 +146,9 @@ function prefillForm(values) {
 }
 
 function changeFormToEdit(item, id) {
-    item.appendChild(elements.form);
+    let formDiv = item.querySelector(".edit-todo-form");
+    formDiv.appendChild(elements.form);
+    formDiv.classList.remove("visibility");
     elements.formTitle.textContent = "Edit";
     elements.form.classList.remove("visibility");
 }
@@ -219,11 +243,11 @@ function editProjectName(project, id) {
     btnDiv.classList.add("rename-btn-div");
 
     let confirmBtn = document.createElement("button");
-    confirmBtn.classList.add("save-edit-project");
+    confirmBtn.classList.add("save-edit-project", "save-btn");
     confirmBtn.textContent = "Save";
 
     let cancelBtn = document.createElement("button");
-    cancelBtn.classList.add("cancel-edit-project");
+    cancelBtn.classList.add("cancel-edit-project", "cancel-btn");
     cancelBtn.textContent = "Cancel";
 
 
