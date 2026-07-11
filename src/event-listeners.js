@@ -25,7 +25,6 @@ function handleSubmit(e) {
     e.preventDefault();
     if (editingId === null) {
         const values = getFormValues();
-        console.log(values);
         createTodo(values);
             let selected = document.querySelector(".project-selected");
             let selectedId = selected.id;
@@ -103,37 +102,40 @@ function handleProjectSubmit(e) {
 function handleProjectChanges(e) {
     toggleActiveProject();
     const project = e.target.closest('[data-id]');
-    console.log(project);
     if (!project) return;
     const id = project.dataset.id;
 
-    if (e.target.closest(".project")) {
-        project.classList.add("project-selected");
-        let filteredTodos = filterTodos(toDoList, id);
-        console.log(filteredTodos);
-        renderTodos(filteredTodos);
-        showElement(elements.addBtn);
-    }
-        if (e.target.matches('.delete-project-btn')) {
+    if (e.target.closest('.delete-project-btn')) {
         changeTodoProperty("Default", id);
         deleteProject(id);
         elements.allTodosTab.click();
         renderProjects(projects);
-        console.log(toDoList);
+        return;
     }
-        if (e.target.matches('.edit-project-btn')) {
+    if (e.target.closest('.edit-project-btn')) {
         editProjectName(project, id);
-        }   
-
-        if (e.target.matches('.cancel-edit-project')) {
+        return;
+        }  
+    
+        if (e.target.closest('.cancel-edit-project')) {
         renderProjects(projects);
+        return;
     }
-         if (e.target.matches('.save-edit-project')) {
+        if (e.target.closest('.save-edit-project')) {
             let newName = getNewProjectName();
             renameProject(newName, id);
             changeTodoProperty(newName, id);
             renderProjects(projects);
+            return;
     }
+
+    if (e.target.closest(".project")) {
+        console.log("project branch firing");
+        project.classList.add("project-selected");
+        let filteredTodos = filterTodos(toDoList, id);
+        renderTodos(filteredTodos);
+        showElement(elements.addBtn);
+    } 
 }
 
 
@@ -150,10 +152,7 @@ elements.projectsFormCancelBtn.addEventListener('click', (e) => {
 })
 
 document.addEventListener('click', (e) => {
-    console.log('document listener - target:', e.target);
-    console.log('rename-project exists?', document.querySelector('.rename-project'));
-    console.log('is edit btn?', e.target.matches('.edit-project-btn'));
-    if (document.querySelector('.rename-project') && (!document.querySelector('.rename-project').contains(e.target)) && (!e.target.matches('.edit-project-btn'))){
+    if (document.querySelector('.rename-project') && (!document.querySelector('.rename-project').contains(e.target)) && (!e.target.closest('.edit-project-btn'))){
         renderProjects(projects);
     }
 })

@@ -1,8 +1,18 @@
 
 
+:root {
+    --color-dark: #9fb878;
+    --color-dark-hover: #8fa965;
+    --color-accent: #e4eed2;
+    --color-accent-bg: #FBFAF8;
+    --color-bg: #ffffff;
+    --color-border: #EBEBE3;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
+
 *:not(dialog) {
   margin: 0;
 }
@@ -11,8 +21,26 @@ input, button, textarea, select {
   font: inherit;
 }
 
+
 body {
     font-family: Helvetica, Arial, sans-serif;
+    background-color: var(--color-bg);
+}
+
+input[type="text"] {
+    border-radius: 6px;
+    padding: 6px;
+    border: 1px solid var(--color-dark);
+    outline: none;
+}
+
+input:focus {
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-dark-hover);
+}
+
+input:active {
+    border: 2px solid var(--color-dark-hover);
 }
 
 
@@ -27,20 +55,27 @@ body {
 
 .header {
     grid-area: 1 / 1 / 2 / 3;
-    background-color: rgb(45, 45, 45);
+    background-color: var(--color-dark);
     padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header > img {
+    width: 36px;
 }
 
 h1 {
-    color: rgb(239, 239, 239);
+    color: rgb(255, 255, 255);
 }
 
 /* projects */
 .projects-container {
     display: flex;
     flex-direction: column;
-    background-color: rgb(222, 222, 222);
-    padding: 40px;
+    background-color: var(--color-accent-bg);
+    padding: 40px 24px;
     gap: 24px;
 }
 
@@ -50,19 +85,39 @@ h1 {
     gap: 8px;
 }
 
+.projects-title {
+    font-size: 20px;
+}
+
 .project {
-    background-color: rgb(210, 210, 210);
-    padding: 12px 24px;
+    background-color: none;
+    padding: 12px;
     cursor: pointer;
     border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.all-todos-btn {
+    justify-content: flex-start;
+    gap: 10px;
 }
 
 .project:hover {
-    background-color: rgb(191, 191, 191);
+    background-color: var(--color-accent);
 }
 
 .project-selected {
-    background-color: rgb(172, 172, 172);
+    background-color: var(--color-accent);
+}
+
+.project > img {
+    width: 28px;
+}
+
+.project > p {
+    font-size: 18px;
 }
 
 .new-project-btn {
@@ -75,7 +130,11 @@ h1 {
 }
 
 .new-project-btn:hover {
-    background-color: rgb(210, 210, 210);
+    background-color: var(--color-accent);
+}
+
+.new-project-btn > i {
+    margin-right: 20px;
 }
 
 .projects-form {
@@ -89,13 +148,56 @@ h1 {
     border-radius: 4px;
 }
 
-.projects-form-name:focus {
-    border-color: rgb(96, 59, 148);
-    outline: 3px solid transparent;
-}
-
 .projects-form-btns {
     align-self: stretch;
+}
+
+.project-btn {
+    padding: 8px;
+}
+
+.project-icon {
+    width: 20px;
+}
+
+
+.rename-project {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+}
+
+.rename-btn-div {
+    align-self: self-end;
+    display: flex;
+    gap: 8px;
+}
+
+
+
+.save-edit-project, .cancel-edit-project, .projects-form-save-btn, .projects-form-cancel-btn {
+    border: 1px solid var(--color-dark);
+    background-color: transparent;
+    border-radius: 4px;
+    padding: 6px;
+    width: 70px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.cancel-edit-project:hover, .projects-form-cancel-btn:hover {
+    background-color: var(--color-accent);
+}
+
+.save-edit-project, .projects-form-save-btn {
+    color: #fff;
+    border: none;
+    background-color: var(--color-dark);
+}
+
+.save-edit-project:hover, .projects-form-save-btn:hover {
+    background-color: var(--color-dark-hover);
 }
 
 /* todos */
@@ -118,7 +220,7 @@ h1 {
 .todo-item {
     padding: 8px 12px;
     cursor: pointer;
-    background-color: rgb(229, 229, 229);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -126,7 +228,7 @@ h1 {
 }
 
 .todo-item:hover {
-    background-color: rgb(211, 211, 211);
+    background-color: var(--color-accent);
 }
 
 .todo-info {
@@ -157,14 +259,14 @@ h1 {
 
 .add-btn {
     padding: 8px 16px;
-    border: none;
-    background-color: rgb(191, 191, 191);
+    border: 1px solid var(--color-dark);
+    background-color: var(--color-accent-bg);
     border-radius: 8px;
     cursor: pointer;
 }
 
 .add-btn:hover {
-    background-color: rgb(171, 171, 171);
+    background-color: var(--color-accent);
 }
 
 .todo-form {
@@ -177,22 +279,6 @@ h1 {
     border-radius: 12px;
 }
 
-
-
-input{
-    outline: 0;
-    border: 1.5px solid black;
-    border-radius: 4px;
-    padding: 4px;
-}
-
-input:active {
-    border-color: rgb(84, 130, 203);
-}
-
-input:focus {
-    border-color: rgb(84, 130, 203);
-}
 
   
 .confirm-btn, .cancel-btn {

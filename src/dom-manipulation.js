@@ -1,3 +1,6 @@
+import editIconUrl from "./img/Pencil-Square--Streamline-Plump 1.svg";
+import deleteIconUrl from "./img/Recycle-Bin-2--Streamline-Plump 1.svg";
+
 const elements = {
     container: document.querySelector(".container"),
     projects: document.querySelector(".projects"),
@@ -147,7 +150,6 @@ function getProjectName() {
 
 function renderProjects(projects) {
     elements.projects.innerHTML = "";
-   // elements.form.project.innerHTML = "";
 
 
     projects.forEach(project => {
@@ -161,15 +163,27 @@ function renderProjects(projects) {
         projectTitle.textContent = project;
         newProject.appendChild(projectTitle);
 
-        let editProjectBtn = document.createElement("button");
-        editProjectBtn.classList.add("edit-project-btn");
-        editProjectBtn.textContent = "#";
-        newProject.appendChild(editProjectBtn);
+        let buttonsDiv = document.createElement("div");
+        buttonsDiv.classList.add("project-btn-div");
+        newProject.appendChild(buttonsDiv);
 
-        let deleteProjectBtn = document.createElement("button");
-        deleteProjectBtn.classList.add("delete-project-btn");
-        deleteProjectBtn.textContent = "x";
-        newProject.appendChild(deleteProjectBtn);
+
+        let editProjectBtn = document.createElement("a");
+        editProjectBtn.classList.add("edit-project-btn", "project-btn");
+        let editIcon = document.createElement("img");
+        editIcon.classList.add("edit-project-icon", "project-icon")
+        editIcon.src = editIconUrl;
+        buttonsDiv.appendChild(editProjectBtn);
+        editProjectBtn.appendChild(editIcon);
+
+        let deleteProjectBtn = document.createElement("a");
+        deleteProjectBtn.classList.add("delete-project-btn", "project-btn");
+        let deleteIcon = document.createElement("img");
+        deleteIcon.classList.add("delete-project-icon", "project-icon");
+        deleteIcon.src = deleteIconUrl;
+        buttonsDiv.appendChild(deleteProjectBtn);
+        deleteProjectBtn.appendChild(deleteIcon);
+
 
         let projectOption = document.createElement("option");
         projectOption.value = project;
@@ -199,20 +213,24 @@ function editProjectName(project, id) {
 
     let input = document.createElement("input");
     input.classList.add("project-name-input");
+    input.type = "text";
+
+    let btnDiv = document.createElement("div");
+    btnDiv.classList.add("rename-btn-div");
+
+    let confirmBtn = document.createElement("button");
+    confirmBtn.classList.add("save-edit-project");
+    confirmBtn.textContent = "Save";
 
     let cancelBtn = document.createElement("button");
     cancelBtn.classList.add("cancel-edit-project");
-    cancelBtn.textContent = "x";
-    
-    let confirmBtn = document.createElement("button");
-    confirmBtn.classList.add("save-edit-project");
-    confirmBtn.textContent = "✓";
-    
+    cancelBtn.textContent = "Cancel";
+
 
     editDiv.appendChild(input);
-    editDiv.appendChild(cancelBtn);
-    editDiv.appendChild(confirmBtn);
-
+    editDiv.appendChild(btnDiv);
+    btnDiv.appendChild(confirmBtn)
+    btnDiv.appendChild(cancelBtn);
 
     input.value = id;
     project.replaceWith(editDiv);
