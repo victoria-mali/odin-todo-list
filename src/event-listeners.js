@@ -137,6 +137,7 @@ elements.allTodosTab.addEventListener('click', (e) => {
 
 elements.projectsFormCancelBtn.addEventListener('click', (e) => {
     hideElement(elements.projectsForm);
+    showElement(elements.addProjectBtn);
     elements.projectsForm.project.value = "";
 })
 

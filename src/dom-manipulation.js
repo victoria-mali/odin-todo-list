@@ -224,6 +224,7 @@ function clearForm() {
 // Projects
 function addProjectForm() {
     showElement(elements.projectsForm);
+    hideElement(elements.addProjectBtn);
 }
 
 function getProjectName() {
@@ -231,6 +232,7 @@ function getProjectName() {
 }
 
 function renderProjects(projects) {
+    showElement(elements.addProjectBtn);
     elements.projects.innerHTML = "";
     elements.form.project.innerHTML = "";
     let defaultProject = document.createElement("option");
