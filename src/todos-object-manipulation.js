@@ -35,11 +35,8 @@ function deleteTodo(id) {
 
 function checkTodo(id) {
   const itemIndex = toDoList.findIndex(x => x.id === id);
-  console.log(typeof id, typeof toDoList[0].id)
   toDoList[itemIndex].toggleDone();
-  console.log(itemIndex)
   saveTodos();
-  console.log(toDoList);
 }
 
 function retrieveTodo(id) {

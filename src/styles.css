@@ -79,17 +79,17 @@ body {
 input[type="text"], input[type="date"], textarea, select {
     border-radius: 6px;
     padding: 6px;
-    border: 1px solid var(--color-dark);
-    outline: none;
+    border: none;
+    outline: 1px solid var(--color-dark);
 }
 
-input:focus {
+input:focus, textarea:focus {
     background-color: var(--color-accent);
-    border: 2px solid var(--color-dark-hover);
+    outline: 2px solid var(--color-dark-hover);
 }
 
-input:active {
-    border: 2px solid var(--color-dark-hover);
+input:active, textarea:focus {
+    outline: 2px solid var(--color-dark-hover);
 }
 
 
@@ -410,6 +410,38 @@ h1 {
     flex-direction: column;
     gap: 12px;
     border-radius: 12px;
+    position: relative;
+}
+
+.todo-form > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.project-label {
+    flex-grow: 2;
+}
+
+.cancel-form-btn {
+  position: absolute;
+  width: 50px;
+  padding: 8px;
+  top: 10px;  
+  right: 28px; 
+  background: transparent;
+  border: none;
+  font-size: 36px;
+  cursor: pointer;
+
+}
+
+.confirm-btn {
+    width: auto;
+    padding: 8px 24px;
+    font-size: 18px;
+    align-self: stretch;
+    margin-top: 12px;
 }
 
 label {
@@ -418,6 +450,10 @@ label {
     gap: 4px;
 }
 
+textarea {
+  max-height: 200px;
+  max-width: 420px;
+}
 
 .visibility {
     display: none;

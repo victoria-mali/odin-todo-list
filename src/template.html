@@ -45,6 +45,8 @@
 
 
             <form class="todo-form visibility" method="get">
+                <button id="cancel-btn" class="cancel-form-btn" type="button">×</button>
+
                 <h2 class="todo-form-title">Add new task</h2>
                 
                 <label>
@@ -58,17 +60,20 @@
                     <input type="text" name="description" id="form-description"/>
                 </label>
                 
-                <label>
+                <div>
+                <label class="project-label">
                    Project
                    <select name="project" id="form-project">
-                    <option value="Default" id="default">Default</option>
-                    </select>
+<!--                     <option value="Default" id="default">Default</option>
+ -->                    </select>
                 </label>
                 
                 <label>
                   Due date
                     <input type="date" name="date" id="form-date"/>
                 </label>
+            </div>
+
                 
                  
                 <label>
@@ -85,13 +90,10 @@
                    <textarea name="notes" id="form-notes"></textarea>
                 </label>
 
-                <div class="form-btns">
                 <button id="confirm-btn" class="confirm-btn save-btn" type="submit">Save</button>
-                <button id="cancel-btn" class="cancel-form-btn cancel-btn" type="button">Cancel</button>
-                </div>
             </form>
 
-            <button class="add-btn" id="add-btn">New task</button>
+            <button class="add-btn" id="add-btn">Add new task</button>
             </div>
             
          </div>

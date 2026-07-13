@@ -16,7 +16,7 @@ const elements = {
     confirmBtn: document.querySelector(".confirm-btn"),
     addBtn: document.querySelector(".add-btn"),
     todoDiv: document.querySelector(".todo-list-div"),
-    defaultProject: document.querySelector("#default"),
+   // defaultProject: document.querySelector("#default"),
 }
 
 
@@ -136,6 +136,11 @@ function renderTodos(todos) {
     elements.form.classList.add("visibility");
 }
 
+function crossTodoOut(item) {
+    let title = item.querySelector(".todo-title");
+    title.classList.add("todo-item-done");
+}
+
 function prefillForm(values) {
     elements.form.title.value = values.title;
     elements.form.description.value = values.description;
@@ -174,6 +179,13 @@ function getProjectName() {
 
 function renderProjects(projects) {
     elements.projects.innerHTML = "";
+    elements.form.project.innerHTML = "";
+    let defaultProject = document.createElement("option");
+    defaultProject.value = "Default";
+    defaultProject.id = "default";
+    defaultProject.textContent = "Default";
+    elements.form.project.appendChild(defaultProject);
+
 
 
     projects.forEach(project => {
@@ -191,7 +203,6 @@ function renderProjects(projects) {
         buttonsDiv.classList.add("project-btn-div");
         newProject.appendChild(buttonsDiv);
 
-
         let editProjectBtn = document.createElement("a");
         editProjectBtn.classList.add("edit-project-btn", "project-btn");
         let editIcon = document.createElement("img");
@@ -207,7 +218,6 @@ function renderProjects(projects) {
         deleteIcon.src = deleteIconUrl;
         buttonsDiv.appendChild(deleteProjectBtn);
         deleteProjectBtn.appendChild(deleteIcon);
-
 
         let projectOption = document.createElement("option");
         projectOption.value = project;
@@ -269,4 +279,4 @@ function getNewProjectName() {
 
 
 
-export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, editProjectName, getNewProjectName};
+export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, crossTodoOut, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, editProjectName, getNewProjectName};
