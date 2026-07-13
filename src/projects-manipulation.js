@@ -23,9 +23,11 @@ function saveProjects() {
   localStorage.setItem("projects", JSON.stringify(projects));
 }
 
+const sampleProjects = 	["Home","Job search"];
+
 function loadProjects() {
   const stored = localStorage.getItem("projects");
-  let parsed = stored ? JSON.parse(stored) : [];
+  let parsed = stored ? JSON.parse(stored) : sampleProjects;
   projects = parsed;
 }
 
