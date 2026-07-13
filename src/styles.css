@@ -1,11 +1,12 @@
 :root {
-    --color-dark: #9fb878;
+    --color-dark: #a2b77f;
     --color-dark-hover: #8fa965;
     --color-accent: #e4eed2;
     --color-accent-bg: #FBFAF8;
     --color-bg: #ffffff;
     --color-border: #EBEBE3;
-    --color-text: #2c2f27;
+    --color-text: #44453d;
+    --color-text-light: #686b64;
 }
 
 
@@ -140,7 +141,7 @@ h1 {
     gap: 8px;
 }
 
-.projects-title {
+.projects-desc {
     font-size: 18px;
     font-weight: 600;
     margin-left: 12px;
@@ -207,6 +208,8 @@ h1 {
 
 .projects-form-btns {
     align-self: flex-end;
+    display: flex;
+    gap: 8px;
 }
 
 .project-btn, .todo-btn {
@@ -230,8 +233,6 @@ h1 {
     display: flex;
     gap: 8px;
 }
-
-
 
 .save-btn, .cancel-btn{
     border: 1px solid var(--color-dark);
@@ -266,7 +267,7 @@ h1 {
 }
 
 .todo-list-div {
-    width: 600px;
+    width: 620px;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -289,9 +290,6 @@ h1 {
     background-color: var(--color-accent);
 }
 
-/* .edit-todo-form {
-    margin-top: 12px;
-} */
 
 .todo-info {
     display: flex;
@@ -309,6 +307,11 @@ h1 {
     font-size: 20px;
 }
 
+.todo-desc {
+    color: var(--color-text-light);
+    font-size: 15px;
+}
+
 .todo-right {
     display: flex;
     align-items: center;
@@ -323,12 +326,12 @@ h1 {
 }
 
 .todo-priority-high {
-    background-color: #F2D6D9;
-    color: #9A2C34;
+    background-color: #f1dee0;
+    color: #98363d;
 }
 
 .todo-priority-medium {
-    background-color: #F7DEB6;
+    background-color: #f5e1c1;
     color: #896533;
 }
 

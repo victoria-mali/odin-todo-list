@@ -1,5 +1,5 @@
-import { toDoList, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo, changeTodoProperty } from "./todos-object-manipulation.js";
-import { elements, showElement, hideElement, showForm, getFormValues, renderTodos, clearForm, crossTodoOut, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, editProjectName, getNewProjectName } from "./dom-manipulation.js";
+import { toDoList, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo, reassignProject, filterTodos } from "./todos-object-manipulation.js";
+import { elements, showElement, hideElement, showForm, getFormValues, renderTodos, clearForm, crossTodoOut, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, toggleActiveProject, editProjectName, getNewProjectName } from "./dom-manipulation.js";
 import { projects, createProject, deleteProject, renameProject}  from "./projects-manipulation.js"
 
 
@@ -20,34 +20,29 @@ elements.cancelBtn.addEventListener('click', (e) => {
     showElement(elements.addBtn);
 })
 
+function refreshTodos() {
+    let selected = document.querySelector(".project-selected");
+    let selectedId = selected.id;
+    if (selectedId !== "all-tasks") {
+        let filteredTodos = filterTodos(toDoList, selectedId);
+        renderTodos(filteredTodos);
+    } else {
+        renderTodos(toDoList);
+    }
+}
 
 function handleSubmit(e) {
     e.preventDefault();
     if (editingId === null) {
         const values = getFormValues();
         createTodo(values);
-            let selected = document.querySelector(".project-selected");
-            let selectedId = selected.id;
-            if (selectedId !== "all-tasks") {
-                let filteredTodos = filterTodos(toDoList, selectedId);
-                renderTodos(filteredTodos);
-            } else {
-                renderTodos(toDoList);
-            }
-
+        refreshTodos()
         showElement(elements.addBtn);
         clearForm();
     } else {
         let newValues = getFormValues();
         replaceTodo(editingId, newValues);
-                    let selected = document.querySelector(".project-selected");
-            let selectedId = selected.id;
-            if (selectedId !== "all-tasks") {
-                let filteredTodos = filterTodos(toDoList, selectedId);
-                renderTodos(filteredTodos);
-            } else {
-                renderTodos(toDoList);
-            };
+        refreshTodos()
         clearForm();
         showElement(elements.addBtn);
         editingId = null;
@@ -61,20 +56,13 @@ function handleTodoChanges(e) {
 
     if (e.target.closest('.todo-delete-btn')) {
         deleteTodo(id);
-            let selected = document.querySelector(".project-selected");
-            let selectedId = selected.id;
-            if (selectedId !== "all-tasks") {
-                let filteredTodos = filterTodos(toDoList, selectedId);
-                renderTodos(filteredTodos);
-            } else {
-                renderTodos(toDoList);
-            }
+        refreshTodos() 
         showElement(elements.addBtn);
     }
 
     if (e.target.matches('.checkbox')) {
         checkTodo(id);
-        renderTodos(toDoList);
+        refreshTodos()
     }
 
     if (e.target.closest('.todo-edit-btn')) {
@@ -108,7 +96,7 @@ function handleProjectChanges(e) {
     const id = project.dataset.id;
 
     if (e.target.closest('.delete-project-btn')) {
-        changeTodoProperty("Default", id);
+        reassignProject("Default", id);
         deleteProject(id);
         elements.allTodosTab.click();
         renderProjects(projects);
@@ -126,13 +114,12 @@ function handleProjectChanges(e) {
         if (e.target.closest('.save-edit-project')) {
             let newName = getNewProjectName();
             renameProject(newName, id);
-            changeTodoProperty(newName, id);
+            reassignProject(newName, id);
             renderProjects(projects);
             return;
     }
 
     if (e.target.closest(".project")) {
-        console.log("project branch firing");
         project.classList.add("project-selected");
         let filteredTodos = filterTodos(toDoList, id);
         renderTodos(filteredTodos);

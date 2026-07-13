@@ -55,7 +55,6 @@ function getFormValues() {
 }
 
 
-
 function renderTodos(todos) {
     elements.todoDiv.innerHTML = "";
 
@@ -79,7 +78,6 @@ function renderTodos(todos) {
         const checkbox = document.createElement("input");
         checkbox.classList.add("checkbox");
         checkbox.type = "checkbox";
-        checkbox.classList.add("checkbox");
         checkbox.name = "checkbox";
         checkbox.checked = todo.done;
 
@@ -149,9 +147,9 @@ function renderTodos(todos) {
 
 
         if (todo.done === true) {
-            todoItem.classList.add("todo-item-done");
+            todoItemContent.classList.add("todo-item-done");
         } else {
-            todoItem.classList.remove("todo-item-done");
+            todoItemContent.classList.remove("todo-item-done");
         }
 
         elements.todoDiv.appendChild(todoItem);
@@ -289,10 +287,6 @@ function toggleActiveProject() {
     allProjects.forEach(project => project.classList.remove("project-selected"))
 }
 
-function filterTodos(todos, id) {
-    return todos.filter(todo => 
-        todo.project === id
-    )}
 
 
 function editProjectName(project, id) {
@@ -327,11 +321,10 @@ function editProjectName(project, id) {
 
 function getNewProjectName() {
     let input = document.querySelector(".project-name-input");
-    console.log(input);
     return input.value;
 }
 
 
 
 
-export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, crossTodoOut, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, filterTodos, toggleActiveProject, editProjectName, getNewProjectName};
+export { elements, showElement, hideElement, showForm, getFormValues, clearForm, renderTodos, crossTodoOut, prefillForm, changeFormToEdit, addProjectForm, getProjectName, renderProjects, toggleActiveProject, editProjectName, getNewProjectName};

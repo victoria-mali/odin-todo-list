@@ -1,5 +1,3 @@
-import { filterTodos } from "./dom-manipulation.js";
-
 let toDoList = [];
 
 class Todo {
@@ -23,14 +21,12 @@ function createTodo(values) {
   const todo = new Todo(values);
   toDoList.push(todo);
   saveTodos();
-  console.log(toDoList);
 }
 
 function deleteTodo(id) {
     const itemIndex = toDoList.findIndex(x => x.id === id);
     toDoList.splice(itemIndex, 1);
     saveTodos();
-    console.log(toDoList);
 }
 
 function checkTodo(id) {
@@ -47,21 +43,21 @@ function retrieveTodo(id) {
 
 function replaceTodo(id, newValues) {
   const itemIndex = toDoList.findIndex(x => x.id === id);
-  toDoList.splice(itemIndex, 1, newValues);
+  toDoList.splice(itemIndex, 1, new Todo(newValues));
+}
+
+function filterTodos(todos, id) {
+    return todos.filter(todo => 
+        todo.project === id
+    )}
+
+
+function reassignProject(oldName, newName) {
+  toDoList.forEach(todo => {
+    if (todo.project === oldName) todo.project = newName;
+  });
   saveTodos();
-  console.log(toDoList);
 }
-
-function changeTodoProperty(newName, id) {
-    let projectTodos = filterTodos(toDoList, id);
-    console.log(projectTodos);
-    projectTodos.forEach(project => {
-    project.project = newName;
-    const todoItemIndex = toDoList.findIndex(x => x.project === id);
-    toDoList.splice(todoItemIndex, 1, project);
-    })
-}
-
 
 //localStorage functions
 function saveTodos() {
@@ -81,4 +77,4 @@ function getTodos() {
 }
 
 
-export { toDoList, loadTodos, getTodos, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo, changeTodoProperty };
+export { toDoList, loadTodos, getTodos, createTodo, deleteTodo, checkTodo, retrieveTodo, replaceTodo, reassignProject, filterTodos };
