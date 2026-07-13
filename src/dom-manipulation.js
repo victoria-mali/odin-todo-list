@@ -1,5 +1,7 @@
 import editIconUrl from "./img/Pencil-Square--Streamline-Plump 1.svg";
 import deleteIconUrl from "./img/Recycle-Bin-2--Streamline-Plump 1.svg";
+import { format } from 'date-fns';
+
 
 const elements = {
     container: document.querySelector(".container"),
@@ -16,7 +18,6 @@ const elements = {
     confirmBtn: document.querySelector(".confirm-btn"),
     addBtn: document.querySelector(".add-btn"),
     todoDiv: document.querySelector(".todo-list-div"),
-   // defaultProject: document.querySelector("#default"),
 }
 
 
@@ -116,6 +117,18 @@ function renderTodos(todos) {
         todoPriorityText.classList.add("todo-priority-text");
         todoPriorityText.textContent = todo.priority;
 
+        const todoDate = document.createElement("div");
+        todoDate.classList.add("todo-date");
+
+
+        if (todo.dueDate !== "") {
+                    const formattedDate = format(todo.dueDate,'do MMM');
+
+            todoDate.textContent = formattedDate;
+        } else {
+            todoDate.textContent = "No date";
+        }
+
         const toDoButtons = document.createElement("div");
         toDoButtons.classList.add("todo-buttons");
         
@@ -151,6 +164,9 @@ function renderTodos(todos) {
             todoRightDiv.appendChild(todoPriorityTag);
             todoPriorityTag.appendChild(todoPriorityText);
         }
+
+        
+            todoRightDiv.appendChild(todoDate);
         
         todoRightDiv.appendChild(toDoButtons);
         toDoButtons.appendChild(toDoEditBtn);

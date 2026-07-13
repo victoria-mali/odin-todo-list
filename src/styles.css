@@ -309,6 +309,7 @@ h1 {
     gap: 20px;
 }
 
+
 .todo-priority-tag {
     background-color: #b5aeae;
     border-radius: 4px;
@@ -335,6 +336,12 @@ h1 {
     font-weight: 500;
 }
 
+
+.todo-date {
+    font-size: 12px;
+}
+
+
 .todo-buttons {
     display: flex;
     gap: 4px;
@@ -346,11 +353,13 @@ h1 {
 }
 
 .add-btn {
+    width: 150px;
     padding: 8px 16px;
     border: 1px solid var(--color-dark);
     background-color: transparent;
     border-radius: 8px;
     cursor: pointer;
+    font-weight: 500;
 }
 
 .add-btn:hover {

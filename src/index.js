@@ -4,6 +4,7 @@ import { loadProjects, getProjects } from "./projects-manipulation.js";
 import { renderTodos, renderProjects } from "./dom-manipulation.js";
 import "./event-listeners.js";
 
+
 loadProjects();
 loadTodos();
 renderProjects(getProjects());
