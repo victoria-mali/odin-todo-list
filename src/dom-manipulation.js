@@ -147,6 +147,13 @@ function renderTodos(todos) {
         const editTodoForm = document.createElement("div");
         editTodoForm.classList.add("edit-todo-form", "visibility");
 
+
+        if (todo.done === true) {
+            todoItem.classList.add("todo-item-done");
+        } else {
+            todoItem.classList.remove("todo-item-done");
+        }
+
         elements.todoDiv.appendChild(todoItem);
         todoItem.appendChild(todoItemContent);
         todoItemContent.appendChild(todoInfo);
@@ -182,8 +189,12 @@ function renderTodos(todos) {
 
 function crossTodoOut(item) {
     let title = item.querySelector(".todo-title");
-    title.classList.add("todo-item-done");
+    let desc = item.querySelector(".todo-desc");
+    title.classList.toggle("todo-item-done");
+    desc.classList.toggle("todo-item-done");
+
 }
+
 
 function prefillForm(values) {
     elements.form.title.value = values.title;

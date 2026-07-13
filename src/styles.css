@@ -92,6 +92,12 @@ input:active, textarea:focus {
     outline: 2px solid var(--color-dark-hover);
 }
 
+input:required:focus:invalid {
+    background-color: rgb(251, 236, 236);
+    outline: 2px solid rgb(255, 168, 168);
+}
+
+
 
 /* structure */
 .container {
@@ -283,9 +289,9 @@ h1 {
     background-color: var(--color-accent);
 }
 
-.edit-todo-form {
+/* .edit-todo-form {
     margin-top: 12px;
-}
+} */
 
 .todo-info {
     display: flex;
@@ -339,6 +345,7 @@ h1 {
 
 .todo-date {
     font-size: 12px;
+    width: 50px;
 }
 
 
@@ -365,6 +372,7 @@ h1 {
 .add-btn:hover {
     background-color: var(--color-accent);
 }
+
 
 
 /* Customize the label (the container) */
@@ -452,6 +460,7 @@ h1 {
     gap: 12px;
     border-radius: 12px;
     position: relative;
+    margin-top: 12px;
 }
 
 .todo-form > div {

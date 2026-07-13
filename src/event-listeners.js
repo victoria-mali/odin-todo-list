@@ -74,8 +74,7 @@ function handleTodoChanges(e) {
 
     if (e.target.matches('.checkbox')) {
         checkTodo(id);
-        
-      //  crossTodoOut(todoItem);
+        renderTodos(toDoList);
     }
 
     if (e.target.closest('.todo-edit-btn')) {
@@ -86,6 +85,7 @@ function handleTodoChanges(e) {
         changeFormToEdit(todoItem, editingId);
     }
 }
+
 
 //Projects
 elements.addProjectBtn.addEventListener('click', (e) => {
