@@ -96,6 +96,26 @@ function renderTodos(todos) {
         todoDesc.classList.add("todo-desc");
         todoDesc.textContent = todo.description;
 
+        const todoRightDiv = document.createElement("div");
+        todoRightDiv.classList.add("todo-right");
+
+        const todoPriorityTag = document.createElement("div");
+        todoPriorityTag.classList.add("todo-priority-tag");
+        const todoPriorityText = document.createElement("p");
+        switch (todo.priority) {
+            case "High":
+                todoPriorityTag.classList.add("todo-priority-high");
+                break;
+            case "Medium":
+                todoPriorityTag.classList.add("todo-priority-medium");
+                break;
+            case "Low":
+                todoPriorityTag.classList.add("todo-priority-low");
+                break;
+        }
+        todoPriorityText.classList.add("todo-priority-text");
+        todoPriorityText.textContent = todo.priority;
+
         const toDoButtons = document.createElement("div");
         toDoButtons.classList.add("todo-buttons");
         
@@ -124,7 +144,15 @@ function renderTodos(todos) {
         todoLeftDiv.appendChild(todoText);
         todoText.appendChild(todoTitle);
         todoText.appendChild(todoDesc);
-        todoInfo.appendChild(toDoButtons);
+        todoInfo.appendChild(todoRightDiv);
+
+
+        if (todo.priority !== "") {
+            todoRightDiv.appendChild(todoPriorityTag);
+            todoPriorityTag.appendChild(todoPriorityText);
+        }
+        
+        todoRightDiv.appendChild(toDoButtons);
         toDoButtons.appendChild(toDoEditBtn);
         toDoEditBtn.appendChild(editIcon);
         toDoButtons.appendChild(toDoDeleteBtn);

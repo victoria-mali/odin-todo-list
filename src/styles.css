@@ -303,6 +303,38 @@ h1 {
     font-size: 20px;
 }
 
+.todo-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.todo-priority-tag {
+    background-color: #b5aeae;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+.todo-priority-high {
+    background-color: #F2D6D9;
+    color: #9A2C34;
+}
+
+.todo-priority-medium {
+    background-color: #F7DEB6;
+    color: #896533;
+}
+
+.todo-priority-low {
+    background-color: #E3F7DE;
+    color: #588B48;
+}
+
+.todo-priority-text {
+    font-size: 12px;
+    font-weight: 500;
+}
+
 .todo-buttons {
     display: flex;
     gap: 4px;
