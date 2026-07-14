@@ -50,7 +50,6 @@ function getFormValues() {
         dueDate: elements.form.date.value,
         priority: elements.form.priority.value,
         notes: elements.form.notes.value,
-        id: crypto.randomUUID(),
     }
 }
 
@@ -299,6 +298,7 @@ function editProjectName(project, id) {
     let input = document.createElement("input");
     input.classList.add("project-name-input");
     input.type = "text";
+    input.maxLength = "20";
 
     let btnDiv = document.createElement("div");
     btnDiv.classList.add("rename-btn-div");

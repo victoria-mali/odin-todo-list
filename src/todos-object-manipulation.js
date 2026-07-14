@@ -18,7 +18,7 @@ class Todo {
 
 
 function createTodo(values) {
-  const todo = new Todo(values);
+  const todo = new Todo({...values, id: crypto.randomUUID()});
   toDoList.push(todo);
   saveTodos();
 }
@@ -33,6 +33,7 @@ function checkTodo(id) {
   const itemIndex = toDoList.findIndex(x => x.id === id);
   toDoList[itemIndex].toggleDone();
   saveTodos();
+  console.log(toDoList);
 }
 
 function retrieveTodo(id) {
@@ -43,7 +44,9 @@ function retrieveTodo(id) {
 
 function replaceTodo(id, newValues) {
   const itemIndex = toDoList.findIndex(x => x.id === id);
-  toDoList.splice(itemIndex, 1, new Todo(newValues));
+  toDoList.splice(itemIndex, 1, new Todo({...newValues, id}));
+  saveTodos();
+  console.log(toDoList);
 }
 
 function filterTodos(todos, id) {
