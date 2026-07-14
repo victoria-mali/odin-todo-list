@@ -1,5 +1,7 @@
 # Todo List App
 
+## [Live demo 🔗](https://victoria-mali.github.io/odin-todo-list/)
+
 A vanilla JavaScript todo list app built as part of [The Odin Project](https://www.theodinproject.com/) Full Stack JavaScript curriculum. The focus of the project is practising **ES modules**, **bundling with Webpack**, and **object-oriented design** following SOLID principles.
 
 ## Features
