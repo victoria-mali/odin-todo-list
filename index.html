@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do list</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script defer src="main.js"></script></head>
+<body>
+        <div class="container">
+            
+                <div class="header">
+                    <img src="88bea9b35eabb4ae04fd.svg" alt="Icon representing a to-do list">
+                    <h1>To-do list</h1>
+                </div>
+
+                <div class="projects-container">
+                    <div class="all-todos-btn project selected" id="all-tasks">
+                        <img src="589195e8751609d75f8c.svg" alt="An icon representing a task list">
+                        <p>All tasks</p>
+                    </div>
+                <h2 class="projects-title">My projects</h2>
+
+                <div class="projects">
+                </div>
+
+                <form class="projects-form visibility" method="get">
+                    <input type="text" name="project" class="projects-form-name" placeholder="Add your project" maxlength="25">
+                    <div class="projects-form-btns">
+                        <button class="projects-form-save-btn save-btn" type="submit">Save</button>
+                        <button class="projects-form-cancel-btn cancel-btn" type="button">Cancel</button>
+                    </div>
+
+                </form>
+
+                <button class="new-project-btn"><i class="fa-solid fa-plus"></i>New project</button>
+
+                        <div class="copyright">
+        <a href="https://github.com/victoria-mali/odin-todo-list" target="_blank">
+            <img src="bddd116c27bf033c2efd.svg" alt="GitHub logo">
+        </a>
+        <div>Victoria Mali © 2026</div>
+    </div>
+            </div>
+
+
+            <div class="todos-container">
+                <div>
+                <div class="todo-list-div"></div>
+                </div>
+
+
+            <form class="todo-form visibility" method="get">
+                <button id="cancel-btn" class="cancel-form-btn" type="button">×</button>
+
+                <h2 class="todo-form-title">Add new task</h2>
+                
+                <label>
+                   Title *
+                    <input type="text" name="title" id="form-title" maxlength="50" required/>
+                </label>
+                
+                
+                <label>
+                   Description
+                    <input type="text" name="description" id="form-description" maxlength="100"/>
+                </label>
+                
+                <div>
+                <label class="project-label">
+                   Project
+                   <select name="project" id="form-project">
+                   </select>
+                </label>
+                
+                <label>
+                  Due date
+                    <input type="date" name="date" id="form-date"/>
+                </label>
+            </div>
+
+                
+                 
+                <label>
+                   Priority
+                   <select name="priority" id="form-priority">
+                    <option selected value> -- no priority -- </option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </label>
+                
+                <label>
+                   Notes
+                   <textarea name="notes" id="form-notes"></textarea>
+                </label>
+
+                <button id="confirm-btn" class="confirm-btn save-btn" type="submit">Save</button>
+            </form>
+
+            <button class="add-btn" id="add-btn">New task</button>
+            </div>
+            
+         </div>
+
+
+</body>
+</html>
